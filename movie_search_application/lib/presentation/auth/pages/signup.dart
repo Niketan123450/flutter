@@ -1,12 +1,12 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:movie_search_application/common/helper/navigation/app_navigation.dart';
+
 import 'package:movie_search_application/core/configs/theme/app_colors.dart';
-import 'package:movie_search_application/presentation/auth/pages/signup.dart';
+
 import 'package:reactive_button/reactive_button.dart';
 
-class SigninPage extends StatelessWidget {
-  const SigninPage({super.key});
+class SignupPage extends StatelessWidget {
+  const SignupPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,8 +24,6 @@ class SigninPage extends StatelessWidget {
             passwordField(),
             SizedBox(height: 30),
             signinButton(),
-            SizedBox(height: 30),
-            signupText(context),
           ],
         ),
       ),
@@ -35,7 +33,7 @@ class SigninPage extends StatelessWidget {
 
 Widget signinText() {
   return Text(
-    'sign In',
+    'sign Up',
     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
   );
 }
@@ -50,29 +48,10 @@ Widget passwordField() {
 
 Widget signinButton() {
   return ReactiveButton(
-    title: 'Sign In',
+    title: 'Sign Up',
     activeColor: AppColors.primary,
     onPressed: () async {},
     onSuccess: () {},
     onFailure: (error) {},
-  );
-}
-
-Widget signupText(BuildContext context) {
-  return Text.rich(
-    TextSpan(
-      children: [
-        TextSpan(text: "Don't you have account?"),
-        TextSpan(
-          text: 'Sign Up',
-          style: TextStyle(color: Colors.blue),
-          recognizer:
-              TapGestureRecognizer()
-                ..onTap = () {
-                  AppNavigator.push(context, SignupPage());
-                },
-        ),
-      ],
-    ),
   );
 }
