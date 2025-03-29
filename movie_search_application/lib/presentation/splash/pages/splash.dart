@@ -1,24 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movie_search_application/common/helper/navigation/app_navigation.dart';
 import 'package:movie_search_application/core/configs/assets/app_images.dart';
+import 'package:movie_search_application/presentation/auth/pages/signin.dart';
+import 'package:movie_search_application/presentation/home/pages/home.dart';
 import 'package:movie_search_application/presentation/splash/bloc/splash_cubit.dart';
 import 'package:movie_search_application/presentation/splash/bloc/splash_state.dart';
 
-class SplashPage extends StatefulWidget {
+class SplashPage extends StatelessWidget {
   const SplashPage({super.key});
 
-  @override
-  State<SplashPage> createState() => _SplashPageState();
-}
-
-class _SplashPageState extends State<SplashPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: BlocListener<SplashCubit, SplashState>(
         listener: (context, state) {
-          if (state is UnAuthenticated) {}
-          if (state is Authenticated) {}
+          if (state is UnAuthenticated) {
+            AppNavigator.pushReplacement(context, const SigninPage());
+          }
+          if (state is Authenticated) {
+            AppNavigator.pushReplacement(context, const HomePage());
+          }
         },
         child: Stack(
           children: [
