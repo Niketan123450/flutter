@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_search_application/common/helper/navigation/app_navigation.dart';
+import 'package:movie_search_application/core/configs/assets/app_images.dart';
 import 'package:movie_search_application/core/configs/theme/app_colors.dart';
 import 'package:movie_search_application/presentation/auth/pages/signup.dart';
 import 'package:reactive_button/reactive_button.dart';
@@ -13,19 +14,36 @@ class SigninPage extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         minimum: EdgeInsets.only(top: 100, right: 16, left: 16),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
+        child: Stack(
           children: [
-            signinText(),
-            SizedBox(height: 30),
-            emailField(),
-            SizedBox(height: 30),
-            passwordField(),
-            SizedBox(height: 30),
-            signinButton(),
-            SizedBox(height: 30),
-            signupText(context),
+            Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage(AppImages.splashBackground),
+                  fit: BoxFit.fitHeight,
+                ),
+              ),
+            ),
+            Container(
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height,
+              color: const Color.fromARGB(152, 0, 0, 0),
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                signinText(),
+                SizedBox(height: 30),
+                emailField(),
+                SizedBox(height: 30),
+                passwordField(),
+                SizedBox(height: 30),
+                signinButton(),
+                SizedBox(height: 30),
+                signupText(context),
+              ],
+            ),
           ],
         ),
       ),
