@@ -38,6 +38,13 @@ dependencies:
   reactive_button: ^0.0.9
   dartz:
   get_it:
+  dio:
+  logger:
+  firebase_core: ^3.12.1
+  firebase_auth: ^5.5.1
+  bloc: ^8.1.4
+  shared_preferences: ^2.5.3
+  cloud_firestore: ^5.6.5
 
 dev_dependencies:
   flutter_test:
@@ -61,6 +68,8 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/
+    - assets/icons/
+    - assets/movies.json
 
   # To add assets to your application, add an assets section, like this:
   # assets:

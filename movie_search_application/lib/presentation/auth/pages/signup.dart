@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
 
 import 'package:movie_search_application/core/configs/theme/app_colors.dart';
+import 'package:movie_search_application/data/auth/models/signup_req_params.dart';
+import 'package:movie_search_application/data/auth/repositories/auth.dart';
+import 'package:movie_search_application/data/auth/sources/auth_api_service.dart';
+import 'package:movie_search_application/domain/auth/usecases/signup.dart';
+import 'package:movie_search_application/utils/service_locator.dart';
 
 import 'package:reactive_button/reactive_button.dart';
 
 class SignupPage extends StatelessWidget {
-  const SignupPage({super.key});
-
+  SignupPage({super.key});
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,41 +22,54 @@ class SignupPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            signinText(),
+            signupText(),
             SizedBox(height: 30),
             emailField(),
             SizedBox(height: 30),
             passwordField(),
             SizedBox(height: 30),
-            signinButton(),
+            signupButton(),
           ],
         ),
       ),
     );
   }
-}
 
-Widget signinText() {
-  return Text(
-    'sign Up',
-    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
-  );
-}
+  Widget signupText() {
+    return Text(
+      'sign Up',
+      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+    );
+  }
 
-Widget emailField() {
-  return TextField(decoration: InputDecoration(hintText: 'Email'));
-}
+  Widget emailField() {
+    return TextField(
+      controller: emailController,
+      decoration: InputDecoration(hintText: 'Email'),
+    );
+  }
 
-Widget passwordField() {
-  return TextField(decoration: InputDecoration(hintText: 'Password'));
-}
+  Widget passwordField() {
+    return TextField(
+      controller: passwordController,
+      decoration: InputDecoration(hintText: 'Password'),
+    );
+  }
 
-Widget signinButton() {
-  return ReactiveButton(
-    title: 'Sign Up',
-    activeColor: AppColors.primary,
-    onPressed: () async {},
-    onSuccess: () {},
-    onFailure: (error) {},
-  );
+  Widget signupButton() {
+    return ReactiveButton(
+      title: 'Sign Up',
+      activeColor: AppColors.primary,
+      onPressed: () async {
+        await sl<SignupUseCase>().call(
+          params: SignupReqParams(
+            email: emailController.text,
+            password: passwordController.text,
+          ),
+        );
+      },
+      onSuccess: () {},
+      onFailure: (error) {},
+    );
+  }
 }

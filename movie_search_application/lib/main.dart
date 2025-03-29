@@ -1,13 +1,20 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie_search_application/core/configs/theme/app_theme.dart';
-import 'package:movie_search_application/presentation/splash/bloc/splash_cubit.dart';
-import 'package:movie_search_application/presentation/splash/pages/splash.dart';
-import 'package:movie_search_application/service_locator.dart';
 
-void main() {
+import 'package:movie_search_application/splash_screen.dart';
+import 'package:movie_search_application/utils/service_locator.dart';
+
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   setupServiceLocator();
+  await Firebase.initializeApp(
+    options: const FirebaseOptions(
+      apiKey: "AIzaSyCvhl2Say1QAfMb2rA13DqxVaB8IP2h-Y0",
+      appId: "1:973797220694:android:ec4b4863104ea06f26b6f7",
+      messagingSenderId: "973797220694",
+      projectId: "movie-search-application-a1ebe",
+    ),
+  );
   runApp(const MyApp());
 }
 
@@ -16,13 +23,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => SplashCubit()..appStated(),
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: AppTheme.appTheme,
-        home: const SplashPage(),
-      ),
-    );
+    return MaterialApp(debugShowCheckedModeBanner: false, home: SplashScreen());
   }
 }

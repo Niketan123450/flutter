@@ -5,7 +5,7 @@ class SplashCubit extends Cubit<SplashState> {
   SplashCubit() : super(DisplaySplash());
 
   void appStated() async {
-    await Future.delayed(Duration(seconds: 2));
+    await Future.delayed(Duration(seconds: 3));
     emit(UnAuthenticated());
   }
 }
