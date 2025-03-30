@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:movie_search_application/common/helper/navigation/app_navigation.dart';
@@ -7,9 +6,9 @@ import 'package:movie_search_application/controller/bloc/home_bloc/home_bloc.dar
 import 'package:movie_search_application/controller/bloc/home_bloc/home_event.dart';
 import 'package:movie_search_application/controller/bloc/home_bloc/home_state.dart';
 import 'package:movie_search_application/core/configs/theme/app_colors.dart';
-import 'package:movie_search_application/model/movie_model.dart';
+
 import 'package:movie_search_application/view/home/SeeAll/see_all_screen.dart';
-import 'package:movie_search_application/common/Widgets/image_curcer.dart';
+import 'package:movie_search_application/view/home/widget/image_curcer.dart';
 import 'package:movie_search_application/common/Widgets/search_container.dart';
 import 'package:movie_search_application/view/details/details_screen.dart';
 import 'package:movie_search_application/view/search/search_screen.dart';
@@ -22,16 +21,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  Future<List<MovieModel>> loadMoviesFromJson() async {
-    // Load JSON data from the file
-    String jsonString = await rootBundle.loadString('assets/movies.json');
-
-    // Parse JSON and return list of MovieModel
-    List<MovieModel> movies = movieModelFromJson(jsonString);
-
-    return movies;
-  }
-
   @override
   void initState() {
     super.initState();
@@ -40,9 +29,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create:
-          (context) =>
-              HomeBloc()..add(HomeInitialEvent()), // Correct Bloc creation
+      create: (context) => HomeBloc()..add(HomeInitialEvent()),
       child: Scaffold(
         backgroundColor: Colors.black,
         body: BlocConsumer<HomeBloc, HomeState>(
@@ -76,7 +63,9 @@ class _HomePageState extends State<HomePage> {
                             SizedBox(
                               width: MediaQuery.of(context).size.width,
                               height: MediaQuery.of(context).size.height * 0.3,
-                              child: ImageCarouselWidget(),
+                              child: ImageCarouselWidget(
+                                movieModel: state.movieList,
+                              ),
                             ),
 
                             SizedBox(height: 20),
@@ -157,7 +146,7 @@ class _HomePageState extends State<HomePage> {
                                       horizontal: 6,
                                     ),
                                     child: Container(
-                                      // width: 150, // Reduced width to fit 3 containers
+                                      // width: 150,
                                       decoration: BoxDecoration(
                                         // color: Colors.amber,
                                         borderRadius: BorderRadius.circular(

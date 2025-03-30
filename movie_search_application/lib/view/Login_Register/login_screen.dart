@@ -108,26 +108,31 @@ class LoginScreen extends StatelessWidget {
                           ),
                           child: Column(
                             children: [
-                              CustomTextfield(
-                                title: "Email",
-                                bloc: bloc,
-                                textcontroller: bloc.emailController,
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: CustomTextfield(
+                                  title: "Email",
+                                  bloc: bloc,
+                                  textcontroller: bloc.emailController,
+                                ),
                               ),
-                              CustomTextfield(
-                                title: "Password",
-                                bloc: bloc,
-                                textcontroller: bloc.passwordController,
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: CustomTextfield(
+                                  title: "Password",
+                                  bloc: bloc,
+                                  textcontroller: bloc.passwordController,
+                                ),
                               ),
                               Row(
                                 children: [
                                   Checkbox(
                                     value: bloc.isChecked,
                                     splashRadius: 8,
-                                    activeColor: const Color.fromRGBO(
-                                      74,
-                                      138,
-                                      196,
-                                      1,
+                                    checkColor: AppColors.primary,
+                                    // activeColor: AppColors.primary,
+                                    fillColor: WidgetStatePropertyAll(
+                                      Colors.white,
                                     ),
                                     onChanged: (val) {
                                       bloc.add(
@@ -144,12 +149,7 @@ class LoginScreen extends StatelessWidget {
                                       fontFamily: "Roboto",
                                       fontSize: 15,
                                       fontWeight: FontWeight.w500,
-                                      color: const Color.fromRGBO(
-                                        74,
-                                        138,
-                                        196,
-                                        1,
-                                      ),
+                                      color: AppColors.primary,
                                     ),
                                   ),
                                 ],
@@ -169,16 +169,30 @@ class LoginScreen extends StatelessWidget {
                                     ),
                                   );
                                 },
-                                child: const CustomButton(title: "Login"),
+                                child: Padding(
+                                  padding: EdgeInsets.symmetric(
+                                    horizontal:
+                                        MediaQuery.of(context).size.width * 0.1,
+                                  ),
+                                  child: const CustomButton(title: "Login"),
+                                ),
+                              ),
+                              SizedBox(
+                                height:
+                                    MediaQuery.of(context).size.height * 0.04,
                               ),
                               Text(
                                 "Forgot Password ?",
                                 style: TextStyle(
                                   fontFamily: "Roboto",
-                                  fontSize: screenWidth * 0.05,
+                                  fontSize: screenWidth * 0.04,
                                   fontWeight: FontWeight.w500,
                                   color: Colors.grey,
                                 ),
+                              ),
+                              SizedBox(
+                                height:
+                                    MediaQuery.of(context).size.height * 0.03,
                               ),
                               GestureDetector(
                                 onTap: () {

@@ -1,9 +1,7 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-
+import 'package:movie_search_application/common/helper/message/display_message.dart';
 import 'package:movie_search_application/common/helper/navigation/app_navigation.dart';
 import 'package:movie_search_application/controller/bloc/details_bloc/details_bloc.dart';
 import 'package:movie_search_application/controller/bloc/details_bloc/details_event.dart';
@@ -11,7 +9,6 @@ import 'package:movie_search_application/controller/bloc/details_bloc/details_st
 import 'package:movie_search_application/core/configs/theme/app_colors.dart';
 import 'package:movie_search_application/core/configs/theme/app_text.dart';
 import 'package:movie_search_application/model/movie_model.dart';
-import 'package:movie_search_application/view/search/search_screen.dart';
 
 class DetailsScreen extends StatefulWidget {
   final MovieModel movieModel;
@@ -68,9 +65,19 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                 context.read<DetailsBloc>().add(
                                   RemoveBookmarkEvent(movie: widget.movieModel),
                                 );
+                                DisplayMessage.showMessage(
+                                  message: "Movie remove from Bookmark!",
+                                  context: context,
+                                  isError: false,
+                                );
                               } else {
                                 context.read<DetailsBloc>().add(
                                   AddBookmarkEvent(movie: widget.movieModel),
+                                );
+                                DisplayMessage.showMessage(
+                                  message: "Movie added to your Bookmark!",
+                                  context: context,
+                                  isError: false,
                                 );
                               }
                             },
@@ -99,9 +106,19 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                     movie: widget.movieModel,
                                   ),
                                 );
+                                DisplayMessage.showMessage(
+                                  message: "Movie remove from WatchList!",
+                                  context: context,
+                                  isError: false,
+                                );
                               } else {
                                 context.read<DetailsBloc>().add(
                                   AddWatchListEvent(movie: widget.movieModel),
+                                );
+                                DisplayMessage.showMessage(
+                                  message: "Movie added to your WatchList!",
+                                  context: context,
+                                  isError: false,
                                 );
                               }
                             },
@@ -178,7 +195,8 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                   ),
                                 ),
                                 child: Text(
-                                  "Releasing on 16 july 2010",
+                                  "Releaseing on ${widget.movieModel.releaseDate}"
+                                      .substring(0, 24),
                                   style: TextStyle(color: Colors.white),
                                   textAlign: TextAlign.center,
                                 ),
@@ -190,9 +208,18 @@ class _DetailsScreenState extends State<DetailsScreen> {
                     ),
                   ),
                   Text(widget.movieModel.title!, style: AppText.primaryTitle),
-                  Text(
-                    widget.movieModel.duration!,
-                    style: AppText.secondaryDescription,
+                  Row(
+                    children: [
+                      Text(
+                        widget.movieModel.duration!,
+                        style: AppText.secondaryDescription,
+                      ),
+                      SizedBox(width: 8),
+                      Text(
+                        "-${widget.movieModel.genre!}",
+                        style: AppText.secondaryDescription,
+                      ),
+                    ],
                   ),
                   SizedBox(height: 10),
                   SizedBox(
@@ -206,6 +233,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                   Row(
                     children: [
                       RatingBar.builder(
+                        itemSize: 20,
                         initialRating:
                             widget.movieModel.rating!, // Set initial rating
                         // glowColor: ,
@@ -232,11 +260,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
               return SizedBox.shrink();
             }
           },
-          listener: (BuildContext context, DetailsState state) {
-            if (state is DetailsSuccessState) {
-              return log("Event is Trigger::::${state.bookmarkList}");
-            }
-          },
+          listener: (BuildContext context, DetailsState state) {},
         ),
       ),
     );

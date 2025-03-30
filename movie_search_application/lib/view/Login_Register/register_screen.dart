@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:movie_search_application/controller/bloc/login_register_bloc/login_register_bloc.dart';
 import 'package:movie_search_application/controller/bloc/login_register_bloc/login_register_event.dart';
 import 'package:movie_search_application/controller/bloc/login_register_bloc/login_register_state.dart';
@@ -7,7 +8,7 @@ import 'package:movie_search_application/core/configs/theme/app_colors.dart';
 import 'package:movie_search_application/core/configs/theme/app_text.dart';
 import 'package:movie_search_application/common/Widgets/custom_button.dart';
 import 'package:movie_search_application/view/Login_Register/Widgets/custom_dropdown.dart';
-import 'package:movie_search_application/view/Login_Register/Widgets/custom_radiobutton.dart';
+
 import 'package:movie_search_application/common/Widgets/custom_snackbar.dart';
 import 'package:movie_search_application/view/Login_Register/Widgets/custom_textfield.dart';
 import 'package:movie_search_application/view/Login_Register/login_screen.dart';
@@ -70,168 +71,199 @@ class RegisterScreen extends StatelessWidget {
                       right: 24,
                       left: 24,
                     ),
-                    child: Container(
-                      padding: EdgeInsets.all(screenWidth * 0.06),
-                      width: screenWidth,
-                      height: screenHeight * 0.5,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(screenWidth * 0.05),
-                        border: Border.all(color: AppColors.primary, width: 2),
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(
+                        vertical: screenHeight * 0.14,
                       ),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Text(
-                                "Create account",
-                                style: AppText.secondaryTitle,
-                              ),
-                              const SizedBox(height: 20),
-                            ],
+                      child: Container(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: screenWidth * 0.06,
+                        ),
+                        width: screenWidth,
+                        height: screenHeight * 0.5,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(
+                            screenWidth * 0.05,
                           ),
-                          CustomTextfield(
-                            title: "Name",
-                            bloc: bloc,
-                            textcontroller: bloc.usernameController,
+                          border: Border.all(
+                            color: AppColors.primary,
+                            width: 2,
                           ),
-                          CustomTextfield(
-                            title: "Email",
-                            bloc: bloc,
-                            textcontroller: bloc.emailController,
-                          ),
-                          CustomTextfield(
-                            title: "Password",
-                            bloc: bloc,
-                            textcontroller: bloc.passwordController,
-                          ),
-
-                          /// Dropdown for Language Selection
-                          CustomDropdown(
-                            title: "Language",
-                            items: const [
-                              "",
-                              "English",
-                              "Spanish",
-                              "French",
-                              "German",
-                            ],
-                            bloc: bloc,
-                          ),
-
-                          SizedBox(height: 20),
-
-                          /// Register Button
-                          GestureDetector(
-                            onTap: () {
-                              ///ADDING RegisterWithDataButtonNavigateEvent TO LOGINREGISTERBLOC
-                              bloc.add(
-                                OnRegisterWithDataEvent(
-                                  userCredential: {
-                                    "email": bloc.emailController.text,
-                                    "password": bloc.passwordController.text,
-                                    "username": bloc.usernameController.text,
-                                    "lang": bloc.selectedDropdownValue,
-                                    "gender": bloc.selectedGender,
-                                  },
+                        ),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "Create Account",
+                                  style: GoogleFonts.montserrat(
+                                    color: AppColors.primary,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 22,
+                                  ),
                                 ),
-                              );
-                            },
-                            child: Padding(
-                              padding: EdgeInsets.symmetric(
-                                horizontal:
-                                    MediaQuery.of(context).size.width * 0.14,
-                              ),
-                              child: const CustomButton(title: "Register"),
+                                const SizedBox(height: 20),
+                              ],
                             ),
-                          ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: CustomTextfield(
+                                title: "Name",
+                                bloc: bloc,
+                                textcontroller: bloc.usernameController,
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: CustomTextfield(
+                                title: "Email",
+                                bloc: bloc,
+                                textcontroller: bloc.emailController,
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: CustomTextfield(
+                                title: "Password",
+                                bloc: bloc,
+                                textcontroller: bloc.passwordController,
+                              ),
+                            ),
 
-                          /// Login Redirection
-                          GestureDetector(
-                            onTap: () {
-                              ///ADDING LoginButtonNavigateEvent TO LOGINREGISTERBLOC
-                              bloc.add(OnLoginNavigateEvent());
-                            },
-                            child: const Center(
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    "Have an account?",
+                            /// Dropdown for Language Selection
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: CustomDropdown(
+                                title: "Language",
+                                items: const [
+                                  "",
+                                  "English",
+                                  "Spanish",
+                                  "French",
+                                  "German",
+                                ],
+                                bloc: bloc,
+                              ),
+                            ),
+
+                            SizedBox(height: 20),
+
+                            /// Register Button
+                            GestureDetector(
+                              onTap: () {
+                                ///ADDING RegisterWithDataButtonNavigateEvent TO LOGINREGISTERBLOC
+                                bloc.add(
+                                  OnRegisterWithDataEvent(
+                                    userCredential: {
+                                      "email": bloc.emailController.text,
+                                      "password": bloc.passwordController.text,
+                                      "username": bloc.usernameController.text,
+                                      "lang": bloc.selectedDropdownValue,
+                                      "gender": bloc.selectedGender,
+                                    },
+                                  ),
+                                );
+                              },
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(
+                                  horizontal:
+                                      MediaQuery.of(context).size.width * 0.14,
+                                ),
+                                child: const CustomButton(title: "Register"),
+                              ),
+                            ),
+                            SizedBox(height: screenHeight * 0.02),
+
+                            /// Login Redirection
+                            GestureDetector(
+                              onTap: () {
+                                ///ADDING LoginButtonNavigateEvent TO LOGINREGISTERBLOC
+                                bloc.add(OnLoginNavigateEvent());
+                              },
+                              child: const Center(
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      "Already Have account?",
+                                      style: TextStyle(
+                                        fontFamily: "Roboto",
+                                        fontSize: 17,
+                                        fontWeight: FontWeight.w500,
+                                        color: Colors.grey,
+                                      ),
+                                    ),
+                                    Text(
+                                      "Login",
+                                      style: TextStyle(
+                                        fontFamily: "Roboto",
+                                        fontSize: 17,
+                                        fontWeight: FontWeight.w500,
+                                        color: Color.fromRGBO(74, 138, 196, 1),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            SizedBox(height: screenHeight * 0.02),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Image.asset(
+                                  "assets/icons/google.png",
+                                  fit: BoxFit.cover,
+                                  height: screenHeight * 0.04,
+                                  width: screenHeight * 0.04,
+                                ),
+                                const SizedBox(width: 20),
+                                Image.asset(
+                                  "assets/icons/facebook.png",
+                                  height: screenHeight * 0.04,
+                                  width: screenHeight * 0.04,
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: screenHeight * 0.02),
+
+                            /// Terms and Privacy Policy
+                            Column(
+                              children: [
+                                Center(
+                                  child: Text(
+                                    "By clicking Register, you agree to our",
                                     style: TextStyle(
                                       fontFamily: "Roboto",
-                                      fontSize: 17,
+                                      fontSize: 14,
                                       fontWeight: FontWeight.w500,
                                       color: Colors.grey,
                                     ),
                                   ),
-                                  Text(
-                                    "Login",
+                                ),
+                                Center(
+                                  child: Text(
+                                    "Terms and Privacy Policy.",
                                     style: TextStyle(
                                       fontFamily: "Roboto",
-                                      fontSize: 17,
+                                      fontSize: 14,
                                       fontWeight: FontWeight.w500,
-                                      color: Color.fromRGBO(74, 138, 196, 1),
+                                      color: const Color.fromRGBO(
+                                        74,
+                                        138,
+                                        196,
+                                        1,
+                                      ),
                                     ),
                                   ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
-                          ),
-
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Image.asset(
-                                "assets/icons/google.png",
-                                height: 16,
-                                width: 16,
-                              ),
-                              const SizedBox(width: 20),
-                              Image.asset(
-                                "assets/icons/google.png",
-                                height: 16,
-                                width: 16,
-                              ),
-                            ],
-                          ),
-
-                          /// Terms and Privacy Policy
-                          Column(
-                            children: [
-                              Center(
-                                child: Text(
-                                  "By clicking Register, you agree to our",
-                                  style: TextStyle(
-                                    fontFamily: "Roboto",
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w500,
-                                    color: Colors.grey,
-                                  ),
-                                ),
-                              ),
-                              Center(
-                                child: Text(
-                                  "Terms and Privacy Policy.",
-                                  style: TextStyle(
-                                    fontFamily: "Roboto",
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w500,
-                                    color: const Color.fromRGBO(
-                                      74,
-                                      138,
-                                      196,
-                                      1,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ),

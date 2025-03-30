@@ -41,16 +41,7 @@ class _WatchListScreenState extends State<WatchListScreen> {
                 size: 30,
               ),
             ),
-            IconButton(
-              onPressed: () {},
-              icon: Icon(
-                Icons.watch_later_outlined,
-                color: AppColors.primary,
 
-                weight: 23,
-                size: 30,
-              ),
-            ),
             IconButton(
               onPressed: () {},
               icon: Icon(
@@ -156,8 +147,10 @@ class _WatchListScreenState extends State<WatchListScreen> {
                                 left: 0,
                                 right: 0,
                                 child: Container(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.6,
                                   height: 4, // Height of the bottom border
-                                  decoration: const BoxDecoration(
+                                  decoration: BoxDecoration(
                                     gradient: LinearGradient(
                                       colors: [
                                         AppColors.secondary,
@@ -176,6 +169,7 @@ class _WatchListScreenState extends State<WatchListScreen> {
                                       begin: Alignment.centerLeft,
                                       end: Alignment.centerRight,
                                     ),
+                                    borderRadius: BorderRadius.circular(20),
                                   ),
                                 ),
                               ),
@@ -216,6 +210,13 @@ class _WatchListScreenState extends State<WatchListScreen> {
                                       ],
                                     ),
                                     Container(
+                                      alignment: Alignment.center,
+                                      width:
+                                          MediaQuery.of(context).size.width *
+                                          0.54,
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                          0.033,
                                       decoration: BoxDecoration(
                                         color: Colors.black,
                                         borderRadius: BorderRadius.circular(
@@ -225,7 +226,11 @@ class _WatchListScreenState extends State<WatchListScreen> {
                                       ),
                                       child: Text(
                                         "Continue watching",
-                                        style: AppText.secondaryTitle,
+                                        style: GoogleFonts.montserrat(
+                                          color: AppColors.primary,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 16,
+                                        ),
                                       ),
                                     ),
                                   ],

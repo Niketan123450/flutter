@@ -52,7 +52,7 @@ class NavbarView extends StatelessWidget {
                   color: Colors.black,
                 ),
                 selectedItemColor: Colors.black,
-                unselectedItemColor: Colors.black,
+                unselectedItemColor: AppColors.secondBackground,
                 unselectedLabelStyle: TextStyle(
                   fontFamily: "Roboto",
                   fontSize: 12,

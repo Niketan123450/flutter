@@ -5,7 +5,7 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_search_application/view/bookmarks/bookmarks_screen.dart';
 import 'package:movie_search_application/view/home/home.dart';
-import 'package:movie_search_application/view/profile_screen.dart';
+import 'package:movie_search_application/view/profile/profile_screen.dart';
 import 'package:movie_search_application/view/watchList/watchlist_screen.dart';
 import 'navbar_event.dart';
 import 'navbar_state.dart';

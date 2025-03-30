@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:movie_search_application/core/configs/theme/app_colors.dart';
+import 'package:movie_search_application/model/movie_model.dart';
 
 class ImageCarouselWidget extends StatefulWidget {
-  const ImageCarouselWidget({super.key});
+  List<MovieModel> movieModel;
+  ImageCarouselWidget({super.key, required this.movieModel});
 
   @override
   State<ImageCarouselWidget> createState() => _ImageCarouselWidgetState();
@@ -12,12 +14,6 @@ class _ImageCarouselWidgetState extends State<ImageCarouselWidget> {
   final PageController _pageController = PageController(initialPage: 0);
   int _currentIndex = 0;
 
-  List<String> imageUrls = [
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKI5TAOsqD7FtzJjsuO-eH0OxinunQMrWjug&s",
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKI5TAOsqD7FtzJjsuO-eH0OxinunQMrWjug&s",
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKI5TAOsqD7FtzJjsuO-eH0OxinunQMrWjug&s",
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -26,7 +22,7 @@ class _ImageCarouselWidgetState extends State<ImageCarouselWidget> {
           height: MediaQuery.of(context).size.height * 0.27,
           child: PageView.builder(
             controller: _pageController,
-            itemCount: imageUrls.length,
+            itemCount: 3,
             onPageChanged: (int index) {
               setState(() {
                 _currentIndex = index;
@@ -41,7 +37,7 @@ class _ImageCarouselWidgetState extends State<ImageCarouselWidget> {
                   decoration: BoxDecoration(
                     color: Colors.blue,
                     image: DecorationImage(
-                      image: NetworkImage(imageUrls[index]),
+                      image: NetworkImage(widget.movieModel[index].posterUrl!),
                       fit: BoxFit.cover,
                     ),
                     borderRadius: BorderRadius.circular(20),
@@ -62,7 +58,7 @@ class _ImageCarouselWidgetState extends State<ImageCarouselWidget> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: List.generate(
-        imageUrls.length,
+        3,
         (index) => AnimatedContainer(
           duration: const Duration(milliseconds: 300),
           margin: const EdgeInsets.symmetric(horizontal: 5),

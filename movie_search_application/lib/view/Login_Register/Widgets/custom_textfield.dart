@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movie_search_application/controller/bloc/login_register_bloc/login_register_bloc.dart';
 import 'package:movie_search_application/controller/bloc/login_register_bloc/login_register_event.dart';
+import 'package:movie_search_application/core/configs/theme/app_colors.dart';
 
 class CustomTextfield extends StatelessWidget {
   const CustomTextfield({
@@ -30,13 +31,22 @@ class CustomTextfield extends StatelessWidget {
             obscureText: title != "Password" ? false : bloc.isPasswordVisible,
             cursorColor: const Color.fromRGBO(184, 184, 184, 1),
             decoration: InputDecoration(
-              hintText: " ${title.toLowerCase()}",
+              hintText:
+                  title == "Email"
+                      ? " ${title.toLowerCase()}/phone"
+                      : " ${title.toLowerCase()}",
               hintStyle: TextStyle(
                 fontFamily: "Roboto",
                 fontSize: 18,
                 fontWeight: FontWeight.w500,
-                color: Colors.grey,
+                color: AppColors.secondBackground,
               ),
+              prefixIcon:
+                  title == "Name"
+                      ? Icon(Icons.person, color: Colors.grey)
+                      : title == "Password"
+                      ? const Icon(Icons.lock, color: Colors.grey)
+                      : Icon(Icons.email, color: Colors.grey),
               suffixIcon:
                   title != "Password"
                       ? const SizedBox()

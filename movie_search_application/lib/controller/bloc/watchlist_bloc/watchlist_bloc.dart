@@ -4,7 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:movie_search_application/controller/bloc/watchlist_bloc/watchlist_event.dart';
 import 'package:movie_search_application/controller/bloc/watchlist_bloc/watchlist_state.dart';
 import 'package:movie_search_application/model/movie_model.dart';
-import 'package:movie_search_application/controller/shared_preference/session_data.dart';
+import 'package:movie_search_application/controller/session_data.dart';
 
 class WatchListBloc extends Bloc<WatchListEvent, WatchListState> {
   WatchListBloc() : super(WatchListInitialState()) {
