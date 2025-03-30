@@ -2,11 +2,10 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 import 'package:movie_search_application/view/splash/splash_screen.dart';
-import 'package:movie_search_application/controller/service_locator.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  setupServiceLocator();
+
   await Firebase.initializeApp(
     options: const FirebaseOptions(
       apiKey: "AIzaSyCvhl2Say1QAfMb2rA13DqxVaB8IP2h-Y0",
