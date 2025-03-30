@@ -7,7 +7,7 @@ import 'package:movie_search_application/core/configs/theme/app_colors.dart';
 import 'package:movie_search_application/view/Widgets/custom_button.dart';
 import 'package:movie_search_application/view/Widgets/custom_snackbar.dart';
 import 'package:movie_search_application/view/Login_Register/Widgets/custom_textfield.dart';
-import 'package:movie_search_application/navbar_screen.dart';
+import 'package:movie_search_application/view/navbar/navbar_screen.dart';
 import 'package:movie_search_application/view/Login_Register/register_screen.dart';
 
 class LoginScreen extends StatelessWidget {

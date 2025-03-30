@@ -1,5 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie_search_application/presentation/splash/bloc/splash_state.dart';
+import 'package:movie_search_application/shared_preference/splash/bloc/splash_state.dart';
 
 class SplashCubit extends Cubit<SplashState> {
   SplashCubit() : super(DisplaySplash());

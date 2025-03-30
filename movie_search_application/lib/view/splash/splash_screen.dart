@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:movie_search_application/navbar_screen.dart';
+import 'package:movie_search_application/view/navbar/navbar_screen.dart';
 import 'package:movie_search_application/shared_preference/session_data.dart';
-import 'package:movie_search_application/welcome_screen.dart';
+import 'package:movie_search_application/view/welcome/welcome_screen.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});

@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_search_application/common/helper/navigation/app_navigation.dart';
-import 'package:movie_search_application/controller/bookmark_bloc/bookmark_bloc.dart';
-import 'package:movie_search_application/controller/bookmark_bloc/bookmark_event.dart';
-import 'package:movie_search_application/controller/bookmark_bloc/bookmark_state.dart';
 import 'package:movie_search_application/controller/watchlist_bloc/watchlist_bloc.dart';
 import 'package:movie_search_application/controller/watchlist_bloc/watchlist_event.dart';
 import 'package:movie_search_application/controller/watchlist_bloc/watchlist_state.dart';
