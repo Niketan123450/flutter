@@ -8,15 +8,15 @@ import 'package:movie_search_application/controller/firebase/firebase_data.dart'
 
 class LoginRegisterBloc extends Bloc<LoginRegisterEvent, LoginRegisterState> {
   LoginRegisterBloc() : super(LoginRegisterInitialState()) {
-    on<LoginNavigateEvent>(onLoginNavigateEvent);
-    on<RegisterNavigateEvent>(onRegisterNavigateEvent);
-    on<LoginWithDataEvent>(onLoginWithDataEvent);
-    on<RegisterWithDataEvent>(onRegisterWithDataEvent);
+    on<LoginNavigateEvent>(loginNavigateEvent);
+    on<RegisterNavigateEvent>(registerNavigateEvent);
+    on<LoginWithDataEvent>(loginWithDataEvent);
+    on<RegisterWithDataEvent>(registerWithDataEvent);
 
-    on<ShowPasswordEvent>(onShowPasswordEvent);
-    on<DropdownSelectionEvent>(onDropdownSelectionEvent);
+    on<ShowPasswordEvent>(showPasswordEvent);
+    on<DropdownSelectionEvent>(dropdownSelectionEvent);
 
-    on<CheckboxSelectionEvent>(onCheckboxSelectionEvent);
+    on<CheckboxSelectionEvent>(checkboxSelectionEvent);
   }
 
   final TextEditingController emailController = TextEditingController();
@@ -28,21 +28,21 @@ class LoginRegisterBloc extends Bloc<LoginRegisterEvent, LoginRegisterState> {
 
   bool isChecked = false;
 
-  FutureOr<void> onLoginNavigateEvent(
+  FutureOr<void> loginNavigateEvent(
     LoginNavigateEvent event,
     Emitter<LoginRegisterState> emit,
   ) {
     emit(LoginNavigateState());
   }
 
-  FutureOr<void> onRegisterNavigateEvent(
+  FutureOr<void> registerNavigateEvent(
     RegisterNavigateEvent event,
     Emitter<LoginRegisterState> emit,
   ) {
     emit(RegisterNavigateState());
   }
 
-  FutureOr<void> onLoginWithDataEvent(
+  FutureOr<void> loginWithDataEvent(
     LoginWithDataEvent event,
     Emitter<LoginRegisterState> emit,
   ) async {
@@ -66,7 +66,7 @@ class LoginRegisterBloc extends Bloc<LoginRegisterEvent, LoginRegisterState> {
     }
   }
 
-  FutureOr<void> onRegisterWithDataEvent(
+  FutureOr<void> registerWithDataEvent(
     RegisterWithDataEvent event,
     Emitter<LoginRegisterState> emit,
   ) async {
@@ -84,7 +84,7 @@ class LoginRegisterBloc extends Bloc<LoginRegisterEvent, LoginRegisterState> {
     }
   }
 
-  FutureOr<void> onShowPasswordEvent(
+  FutureOr<void> showPasswordEvent(
     ShowPasswordEvent event,
     Emitter<LoginRegisterState> emit,
   ) {
@@ -92,7 +92,7 @@ class LoginRegisterBloc extends Bloc<LoginRegisterEvent, LoginRegisterState> {
     emit(ShowPasswordState(isVisible: isPasswordVisible));
   }
 
-  FutureOr<void> onDropdownSelectionEvent(
+  FutureOr<void> dropdownSelectionEvent(
     DropdownSelectionEvent event,
     Emitter<LoginRegisterState> emit,
   ) {
@@ -100,7 +100,7 @@ class LoginRegisterBloc extends Bloc<LoginRegisterEvent, LoginRegisterState> {
     emit(DropdownSelectionState(selectedValue: selectedDropdownValue));
   }
 
-  FutureOr<void> onCheckboxSelectionEvent(
+  FutureOr<void> checkboxSelectionEvent(
     CheckboxSelectionEvent event,
     Emitter<LoginRegisterState> emit,
   ) {
