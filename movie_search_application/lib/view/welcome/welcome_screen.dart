@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie_search_application/controller/login_register_bloc/login_register_bloc.dart';
-import 'package:movie_search_application/controller/login_register_bloc/login_register_event.dart';
-import 'package:movie_search_application/controller/login_register_bloc/login_register_state.dart';
+import 'package:movie_search_application/controller/bloc/login_register_bloc/login_register_bloc.dart';
+import 'package:movie_search_application/controller/bloc/login_register_bloc/login_register_event.dart';
+import 'package:movie_search_application/controller/bloc/login_register_bloc/login_register_state.dart';
 import 'package:movie_search_application/core/configs/theme/app_colors.dart';
 import 'package:movie_search_application/view/Login_Register/login_screen.dart';
 import 'package:movie_search_application/view/Login_Register/register_screen.dart';

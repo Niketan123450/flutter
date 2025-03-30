@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:movie_search_application/controller/login_register_bloc/login_register_bloc.dart';
-import 'package:movie_search_application/controller/login_register_bloc/login_register_event.dart';
+import 'package:movie_search_application/controller/bloc/login_register_bloc/login_register_bloc.dart';
+import 'package:movie_search_application/controller/bloc/login_register_bloc/login_register_event.dart';
 
 class CustomTextfield extends StatelessWidget {
   const CustomTextfield({
@@ -18,16 +18,6 @@ class CustomTextfield extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          title,
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            fontFamily: "Roboto",
-            fontSize: 16,
-            fontWeight: FontWeight.w500,
-            color: const Color.fromRGBO(18, 18, 18, 1),
-          ),
-        ),
         const SizedBox(height: 5),
         Container(
           height: 50,
@@ -40,7 +30,7 @@ class CustomTextfield extends StatelessWidget {
             obscureText: title != "Password" ? false : bloc.isPasswordVisible,
             cursorColor: const Color.fromRGBO(184, 184, 184, 1),
             decoration: InputDecoration(
-              hintText: "Your ${title.toLowerCase()}",
+              hintText: " ${title.toLowerCase()}",
               hintStyle: TextStyle(
                 fontFamily: "Roboto",
                 fontSize: 18,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movie_search_application/view/navbar/navbar_screen.dart';
-import 'package:movie_search_application/shared_preference/session_data.dart';
+import 'package:movie_search_application/controller/shared_preference/session_data.dart';
 import 'package:movie_search_application/view/welcome/welcome_screen.dart';
 
 class SplashScreen extends StatelessWidget {
@@ -26,8 +26,23 @@ class SplashScreen extends StatelessWidget {
     });
 
     return Scaffold(
-      backgroundColor: const Color.fromRGBO(74, 138, 196, 1),
-      body: Center(child: Image.asset("assets/images/splash.png")),
+      backgroundColor: Colors.black,
+      body: Stack(
+        children: [
+          Container(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height,
+            // color: const Color.fromARGB(160, 0, 0, 0),
+            child: Image.asset("assets/images/splash.jpg", fit: BoxFit.cover),
+          ),
+          Container(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height,
+            color: const Color.fromARGB(160, 0, 0, 0),
+            // child: Image.asset("assets/images/splash.jpg", fit: BoxFit.cover),
+          ),
+        ],
+      ),
     );
   }
 }

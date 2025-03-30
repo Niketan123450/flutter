@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:movie_search_application/controller/login_register_bloc/login_register_bloc.dart';
-import 'package:movie_search_application/controller/login_register_bloc/login_register_event.dart';
+import 'package:movie_search_application/controller/bloc/login_register_bloc/login_register_bloc.dart';
+import 'package:movie_search_application/controller/bloc/login_register_bloc/login_register_event.dart';
 
 class CustomDropdown extends StatelessWidget {
   const CustomDropdown({

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie_search_application/controller/search_bloc/search_bloc.dart';
-import 'package:movie_search_application/controller/search_bloc/search_event.dart';
-import 'package:movie_search_application/controller/search_bloc/search_state.dart';
+import 'package:movie_search_application/controller/bloc/search_bloc/search_bloc.dart';
+import 'package:movie_search_application/controller/bloc/search_bloc/search_event.dart';
+import 'package:movie_search_application/controller/bloc/search_bloc/search_state.dart';
 import 'package:movie_search_application/core/configs/theme/app_colors.dart';
 
 class SearchScreen extends StatefulWidget {
@@ -100,15 +100,47 @@ class _SearchScreenState extends State<SearchScreen> {
                     } else if (state is SearchLoadedState) {
                       final movies = state.movieList;
                       if (movies.isEmpty) {
-                        return const Center(child: Text('No movies found.'));
+                        return Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.search_off,
+                                size: 80,
+                                color: Colors.grey,
+                              ),
+                              const SizedBox(height: 16),
+                              Text(
+                                "No Results Found",
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.grey,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              const SizedBox(height: 8),
+                              Text(
+                                "Try searching for something else.",
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  color: Colors.grey[600],
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                            ],
+                          ),
+                        );
                       }
                       return ListView.builder(
                         itemCount: movies.length,
                         itemBuilder: (context, index) {
                           final movie = movies[index];
                           return Card(
+                            color: AppColors.secondBackground,
                             margin: const EdgeInsets.symmetric(vertical: 8.0),
                             child: ListTile(
+                              textColor: AppColors.primary,
+
                               leading: Image.network(
                                 movie.posterUrl!,
                                 width: 50,

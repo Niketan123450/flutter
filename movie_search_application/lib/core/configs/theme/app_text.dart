@@ -9,6 +9,11 @@ class AppText {
     fontWeight: FontWeight.bold,
     fontSize: 26,
   );
+  static TextStyle appBarTitle = GoogleFonts.montserrat(
+    color: AppColors.primary,
+    fontWeight: FontWeight.bold,
+    fontSize: 24,
+  );
   static TextStyle secondaryTitle = GoogleFonts.montserrat(
     color: AppColors.secondary,
     fontWeight: FontWeight.bold,
