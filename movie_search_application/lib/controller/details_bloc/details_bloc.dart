@@ -1,45 +1,46 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:movie_search_application/controller/bookmark_bloc/bookmark_event.dart';
-import 'package:movie_search_application/controller/bookmark_bloc/bookmark_state.dart';
+
+import 'package:movie_search_application/controller/details_bloc/details_event.dart';
+import 'package:movie_search_application/controller/details_bloc/details_state.dart';
 import 'package:movie_search_application/model/movie_model.dart';
 import 'package:movie_search_application/shared_preference/session_data.dart';
 
-class BookmarkBloc extends Bloc<BookmarkEvent, BookmarkState> {
-  BookmarkBloc() : super(BookmarkInitialState()) {
-    on<BookmarkInitialEvent>(bookmarkInitialEvent);
+class DetailsBloc extends Bloc<DetailsEvent, DetailsState> {
+  DetailsBloc() : super(DetailsInitialState()) {
+    on<DetailsInitialEvent>(detailsInitialEvent);
     on<AddBookmarkEvent>(addBookmarkEvent);
     on<RemoveBookmarkEvent>(removeBookmarkEvent);
   }
 
-  Future<void> bookmarkInitialEvent(
-    BookmarkInitialEvent event,
-    Emitter<BookmarkState> emit,
+  Future<void> detailsInitialEvent(
+    DetailsInitialEvent event,
+    Emitter<DetailsState> emit,
   ) async {
-    emit(BookmarkLoadingState());
+    emit(DetailsLoadingState());
     List<MovieModel> movies = await SessionData.getBookmarks();
-    emit(BookmarkSuccessState(bookmarkList: movies));
+    emit(DetailsSuccessState(bookmarkList: movies));
   }
 
   // Add Movie to Bookmark
   Future<void> addBookmarkEvent(
     AddBookmarkEvent event,
-    Emitter<BookmarkState> emit,
+    Emitter<DetailsState> emit,
   ) async {
     List<MovieModel> movies = await SessionData.getBookmarks();
     movies.add(event.movie);
     await SessionData.storeBookmarks(movies);
-    emit(BookmarkSuccessState(bookmarkList: movies));
+    emit(DetailsSuccessState(bookmarkList: movies));
   }
 
   Future<void> removeBookmarkEvent(
     RemoveBookmarkEvent event,
-    Emitter<BookmarkState> emit,
+    Emitter<DetailsState> emit,
   ) async {
     List<MovieModel> movies = await SessionData.getBookmarks();
     movies.removeWhere((m) => m.title == event.movie.title);
     await SessionData.storeBookmarks(movies);
-    emit(BookmarkSuccessState(bookmarkList: movies));
+    emit(DetailsSuccessState(bookmarkList: movies));
   }
 }

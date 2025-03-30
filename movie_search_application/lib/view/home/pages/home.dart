@@ -8,7 +8,10 @@ import 'package:movie_search_application/controller/home_bloc/home_state.dart';
 import 'package:movie_search_application/core/configs/theme/app_colors.dart';
 import 'package:movie_search_application/model/movie_model.dart';
 import 'package:movie_search_application/view/SeeAll/see_all_screen.dart';
+import 'package:movie_search_application/view/Widgets/custom_search.dart';
+import 'package:movie_search_application/view/Widgets/search_container.dart';
 import 'package:movie_search_application/view/details/pages/details_screen.dart';
+import 'package:movie_search_application/view/search/search_screen.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -53,63 +56,13 @@ class _HomePageState extends State<HomePage> {
                     width: MediaQuery.of(context).size.width,
                     height: 100,
                     color: Colors.black,
-                    child: Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: TextField(
-                        decoration: InputDecoration(
-                          hintText: 'Search...',
-                          hintStyle: const TextStyle(
-                            color: Colors.white54,
-                          ), // Optional for hint color
-                          prefixIcon: const Icon(
-                            Icons.search,
-                            color: AppColors.primary,
-                          ),
-                          suffixIcon: IconButton(
-                            icon: const Icon(
-                              Icons.notifications,
-                              color: AppColors.primary,
-                            ),
-                            onPressed: () {
-                              // Add your notification logic here
-                            },
-                          ),
-                          filled: true,
-                          fillColor:
-                              Colors
-                                  .black, // Background color of the text field
-                          // Add borders for different states
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12.0),
-                            borderSide: const BorderSide(
-                              color:
-                                  AppColors.primary, // Border when not focused
-                              width: 1.5,
-                            ),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12.0),
-                            borderSide: const BorderSide(
-                              color: AppColors.primary, // Border when focused
-                              width: 2.0,
-                            ),
-                          ),
-                          errorBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12.0),
-                            borderSide: const BorderSide(
-                              color: Colors.red, // Border when there's an error
-                              width: 1.5,
-                            ),
-                          ),
-                          focusedErrorBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12.0),
-                            borderSide: const BorderSide(
-                              color:
-                                  Colors.red, // Border when focused and error
-                              width: 2.0,
-                            ),
-                          ),
-                        ),
+                    child: GestureDetector(
+                      onTap: () {
+                        AppNavigator.push(context, SearchScreen());
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                        child: SearchContainer(),
                       ),
                     ),
                   ),

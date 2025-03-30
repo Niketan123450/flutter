@@ -1,15 +1,15 @@
 import 'package:movie_search_application/model/movie_model.dart';
 
-abstract class BookmarkEvent {}
+abstract class DetailsEvent {}
 
-class BookmarkInitialEvent extends BookmarkEvent {}
+class DetailsInitialEvent extends DetailsEvent {}
 
-class AddBookmarkEvent extends BookmarkEvent {
+class AddBookmarkEvent extends DetailsEvent {
   final MovieModel movie;
   AddBookmarkEvent({required this.movie});
 }
 
-class RemoveBookmarkEvent extends BookmarkEvent {
+class RemoveBookmarkEvent extends DetailsEvent {
   final MovieModel movie;
   RemoveBookmarkEvent({required this.movie});
 }

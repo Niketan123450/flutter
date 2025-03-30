@@ -1,10 +1,15 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:movie_search_application/common/helper/navigation/app_navigation.dart';
 import 'package:movie_search_application/controller/bookmark_bloc/bookmark_bloc.dart';
 import 'package:movie_search_application/controller/bookmark_bloc/bookmark_event.dart';
 import 'package:movie_search_application/controller/bookmark_bloc/bookmark_state.dart';
 import 'package:movie_search_application/core/configs/theme/app_colors.dart';
+import 'package:movie_search_application/core/configs/theme/app_text.dart';
 
 class BookmarksScreen extends StatefulWidget {
   const BookmarksScreen({super.key});
@@ -47,77 +52,112 @@ class _BookmarksScreenState extends State<BookmarksScreen> {
                 itemBuilder: (context, index) {
                   return Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      // color: Colors.amber,
-                      width: MediaQuery.of(context).size.width,
-                      height: MediaQuery.of(context).size.height * 0.2,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            width: MediaQuery.of(context).size.width * 0.3,
-                            height: MediaQuery.of(context).size.height * 0.2,
-                            decoration: BoxDecoration(
-                              image: DecorationImage(
-                                image: NetworkImage(
-                                  state.bookmarkList[index].posterUrl!,
+                    child: GestureDetector(
+                      onTap: () {
+                        context.read<BookmarkBloc>().add(
+                          AddBookmarkEvent(movie: state.bookmarkList[index]),
+                        );
+                      },
+                      child: Container(
+                        // color: Colors.amber,
+                        width: MediaQuery.of(context).size.width * 0.8,
+                        height: MediaQuery.of(context).size.height * 0.27,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              width: MediaQuery.of(context).size.width * 0.3,
+                              height: MediaQuery.of(context).size.height * 0.2,
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  image: NetworkImage(
+                                    state.bookmarkList[index].posterUrl!,
+                                  ),
+                                  fit: BoxFit.cover,
                                 ),
-                                fit: BoxFit.cover,
                               ),
                             ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  state.bookmarkList[index].title!,
-                                  style: TextStyle(
-                                    color: AppColors.secondary,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 24,
+
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  SizedBox(
+                                    // width: MediaQuery.of(context).size.width,
+                                    child: Text(
+                                      state.bookmarkList[index].title!,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: AppText.secondaryTitle,
+                                    ),
                                   ),
-                                ),
-                                Row(
-                                  children: [
-                                    Text(
-                                      state.bookmarkList[index].duration!,
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 18,
+                                  Row(
+                                    children: [
+                                      Text(
+                                        state.bookmarkList[index].duration!,
+                                        style: AppText.smallText,
                                       ),
-                                    ),
-                                    Text(
-                                      state.bookmarkList[index].genre!,
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 18,
+                                      Text(
+                                        state.bookmarkList[index].genre!,
+                                        style: AppText.smallText,
                                       ),
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    width:
+                                        MediaQuery.of(context).size.width * 0.6,
+                                    child: Text(
+                                      overflow: TextOverflow.ellipsis,
+                                      maxLines: 4,
+                                      state.bookmarkList[index].description!,
+                                      style: AppText.description,
                                     ),
-                                  ],
-                                ),
-                                SizedBox(
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.6,
-                                  child: Text(
+                                  ),
+                                  Text(
+                                    "Review",
                                     overflow: TextOverflow.ellipsis,
                                     maxLines: 4,
-                                    state.bookmarkList[index].description!,
-                                    style: TextStyle(
-                                      color: Colors.white,
+                                    style: GoogleFonts.montserrat(
+                                      color: AppColors.secondary,
                                       fontWeight: FontWeight.bold,
                                       fontSize: 18,
                                     ),
                                   ),
-                                ),
-                              ],
+                                  Row(
+                                    children: [
+                                      RatingBar.builder(
+                                        initialRating:
+                                            state
+                                                .bookmarkList[index]
+                                                .rating!, // Set initial rating
+                                        // glowColor: ,
+                                        itemSize: 25,
+                                        direction: Axis.horizontal,
+                                        allowHalfRating: true,
+                                        itemCount: 5,
+                                        itemPadding: EdgeInsets.symmetric(
+                                          horizontal: 4.0,
+                                        ),
+                                        itemBuilder: (context, index) {
+                                          return Icon(
+                                            Icons.star,
+                                            color: AppColors.primary,
+                                          );
+                                        },
+                                        onRatingUpdate: (rating) {},
+                                      ),
+                                      Text(
+                                        "(${state.bookmarkList[index].rating!})",
+                                        style: AppText.secondaryDescription,
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   );
@@ -129,7 +169,11 @@ class _BookmarksScreenState extends State<BookmarksScreen> {
               return SizedBox.shrink();
             }
           },
-          listener: (BuildContext context, BookmarkState state) {},
+          listener: (BuildContext context, BookmarkState state) {
+            if (state is BookmarkSuccessState) {
+              return log("Event is Trigger::::${state.bookmarkList}");
+            }
+          },
         ),
       ),
     );
