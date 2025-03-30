@@ -1,32 +1,27 @@
 abstract class LoginRegisterEvent {}
 
-class OnLoginNavigateEvent extends LoginRegisterEvent {}
+class LoginNavigateEvent extends LoginRegisterEvent {}
 
-class OnRegisterNavigateEvent extends LoginRegisterEvent {}
+class RegisterNavigateEvent extends LoginRegisterEvent {}
 
-class OnLoginWithDataEvent extends LoginRegisterEvent {
+class LoginWithDataEvent extends LoginRegisterEvent {
   final Map<String, dynamic> userCredential;
-  OnLoginWithDataEvent({required this.userCredential});
+  LoginWithDataEvent({required this.userCredential});
 }
 
-class OnRegisterWithDataEvent extends LoginRegisterEvent {
+class RegisterWithDataEvent extends LoginRegisterEvent {
   final Map<String, dynamic> userCredential;
-  OnRegisterWithDataEvent({required this.userCredential});
+  RegisterWithDataEvent({required this.userCredential});
 }
 
-class OnShowPasswordEvent extends LoginRegisterEvent {}
+class ShowPasswordEvent extends LoginRegisterEvent {}
 
-class OnDropdownSelectionEvent extends LoginRegisterEvent {
+class DropdownSelectionEvent extends LoginRegisterEvent {
   final String selectedValue;
-  OnDropdownSelectionEvent({required this.selectedValue});
+  DropdownSelectionEvent({required this.selectedValue});
 }
 
-class OnRadioSelectionEvent extends LoginRegisterEvent {
-  final String selectedValue;
-  OnRadioSelectionEvent({required this.selectedValue});
-}
-
-class OnCheckboxSelectionEvent extends LoginRegisterEvent {
+class CheckboxSelectionEvent extends LoginRegisterEvent {
   final bool isChecked;
-  OnCheckboxSelectionEvent({required this.isChecked});
+  CheckboxSelectionEvent({required this.isChecked});
 }

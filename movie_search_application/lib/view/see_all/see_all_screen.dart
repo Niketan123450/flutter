@@ -52,7 +52,10 @@ class _SeeAllScreenState extends State<SeeAllScreen> {
                             onPressed: () {
                               AppNavigator.pop(context);
                             },
-                            icon: Icon(Icons.arrow_back_ios_new_outlined),
+                            icon: Icon(
+                              Icons.arrow_back_ios_new_outlined,
+                              color: AppColors.primary,
+                            ),
                           ),
                           Text("All Movies", style: AppText.appBarTitle),
                           Spacer(),

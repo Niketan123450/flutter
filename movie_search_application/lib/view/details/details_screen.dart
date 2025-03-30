@@ -242,7 +242,14 @@ class _DetailsScreenState extends State<DetailsScreen> {
                         itemCount: 5,
                         itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
                         itemBuilder: (context, index) {
-                          return Icon(Icons.star, color: AppColors.primary);
+                          if (index < widget.movieModel.rating!) {
+                            return Icon(Icons.star, color: AppColors.primary);
+                          } else {
+                            return Icon(
+                              Icons.star,
+                              color: AppColors.secondBackground,
+                            );
+                          }
                         },
                         onRatingUpdate: (rating) {},
                       ),

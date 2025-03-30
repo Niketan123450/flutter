@@ -31,7 +31,6 @@ class DetailsBloc extends Bloc<DetailsEvent, DetailsState> {
     );
   }
 
-  // Add Movie to Bookmark
   Future<void> addBookmarkEvent(
     AddBookmarkEvent event,
     Emitter<DetailsState> emit,

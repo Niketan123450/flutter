@@ -12,10 +12,10 @@ import 'navbar_state.dart';
 
 class NavbarBloc extends Bloc<NavbarEvent, NavbarState> {
   NavbarBloc() : super(NavbarInitialState()) {
-    on<OnNavbarTapEvent>(onNavbarTapEvent);
+    on<NavbarTapEvent>(onNavbarTapEvent);
   }
 
-  final List<Widget> _screens = [
+  final List<Widget> screens = [
     const HomePage(),
     const WatchListScreen(),
     const BookmarksScreen(),
@@ -23,11 +23,11 @@ class NavbarBloc extends Bloc<NavbarEvent, NavbarState> {
   ];
 
   FutureOr<void> onNavbarTapEvent(
-    OnNavbarTapEvent event,
+    NavbarTapEvent event,
     Emitter<NavbarState> emit,
   ) {
     emit(
-      ChangeNavBarTapState(event.newIndex, _screens.elementAt(event.newIndex)),
+      ChangeNavBarTapState(event.newIndex, screens.elementAt(event.newIndex)),
     );
   }
 }

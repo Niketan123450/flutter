@@ -15,6 +15,11 @@ class LoginRegisterWithDataErrorState extends LoginRegisterActionState {
   LoginRegisterWithDataErrorState({required this.error});
 }
 
+class LoginRegisterWithDataSuccessState extends LoginRegisterActionState {
+  final String successMessage;
+  LoginRegisterWithDataSuccessState({required this.successMessage});
+}
+
 class ShowPasswordState extends LoginRegisterState {
   final bool isVisible;
   ShowPasswordState({required this.isVisible});
@@ -23,11 +28,6 @@ class ShowPasswordState extends LoginRegisterState {
 class DropdownSelectionState extends LoginRegisterState {
   final String selectedValue;
   DropdownSelectionState({required this.selectedValue});
-}
-
-class RadioSelectionState extends LoginRegisterState {
-  final String selectedValue;
-  RadioSelectionState({required this.selectedValue});
 }
 
 class CheckboxSelectionState extends LoginRegisterState {

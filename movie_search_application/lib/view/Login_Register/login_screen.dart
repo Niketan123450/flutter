@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movie_search_application/common/helper/message/display_message.dart';
 import 'package:movie_search_application/controller/bloc/login_register_bloc/login_register_bloc.dart';
 import 'package:movie_search_application/controller/bloc/login_register_bloc/login_register_event.dart';
 import 'package:movie_search_application/controller/bloc/login_register_bloc/login_register_state.dart';
 import 'package:movie_search_application/core/configs/theme/app_colors.dart';
 import 'package:movie_search_application/common/Widgets/custom_button.dart';
-import 'package:movie_search_application/common/Widgets/custom_snackbar.dart';
+
 import 'package:movie_search_application/view/Login_Register/Widgets/custom_textfield.dart';
 import 'package:movie_search_application/view/navbar/navbar_screen.dart';
 import 'package:movie_search_application/view/Login_Register/register_screen.dart';
@@ -37,7 +38,12 @@ class LoginScreen extends StatelessWidget {
               MaterialPageRoute(builder: (context) => const RegisterScreen()),
             );
           } else if (state is LoginRegisterWithDataErrorState) {
-            CustomSnackbar.customSnackbar(context, state.error);
+            DisplayMessage.showMessage(message: state.error, context: context);
+          } else if (state is LoginRegisterWithDataSuccessState) {
+            DisplayMessage.showMessage(
+              message: state.successMessage,
+              context: context,
+            );
           }
         },
         builder: (context, state) {
@@ -136,9 +142,7 @@ class LoginScreen extends StatelessWidget {
                                     ),
                                     onChanged: (val) {
                                       bloc.add(
-                                        OnCheckboxSelectionEvent(
-                                          isChecked: val!,
-                                        ),
+                                        CheckboxSelectionEvent(isChecked: val!),
                                       );
                                     },
                                   ),
@@ -159,12 +163,13 @@ class LoginScreen extends StatelessWidget {
                                   ///ADDING LoginWithDataButtonNavigateEvent TO LOGINREGISTERBLOC
 
                                   bloc.add(
-                                    OnLoginWithDataEvent(
+                                    LoginWithDataEvent(
                                       userCredential: {
-                                        "email": "niketangadade88@gmail.com",
-                                        "password": "Niketan@123",
-                                        // "email": bloc.emailController.text,
-                                        // "password": bloc.passwordController.text,
+                                        // "email": "niketangadade88@gmail.com",
+                                        // "password": "Niketan@123",
+                                        "email": bloc.emailController.text,
+                                        "password":
+                                            bloc.passwordController.text,
                                       },
                                     ),
                                   );
@@ -197,7 +202,7 @@ class LoginScreen extends StatelessWidget {
                               GestureDetector(
                                 onTap: () {
                                   ///ADDING RegisterButtonNavigateEvent TO LOGINREGISTERBLOC
-                                  bloc.add(OnRegisterNavigateEvent());
+                                  bloc.add(RegisterNavigateEvent());
                                 },
                                 child: Center(
                                   child: Row(

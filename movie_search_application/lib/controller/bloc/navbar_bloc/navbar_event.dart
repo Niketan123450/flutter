@@ -1,6 +1,6 @@
 abstract class NavbarEvent {}
 
-class OnNavbarTapEvent extends NavbarEvent {
+class NavbarTapEvent extends NavbarEvent {
   final int newIndex;
-  OnNavbarTapEvent({required this.newIndex});
+  NavbarTapEvent({required this.newIndex});
 }

@@ -18,7 +18,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     emit(HomeLoadingState());
     String jsonString = await rootBundle.loadString('assets/movies.json');
 
-    // Parse JSON and return list of MovieModel
     List<MovieModel> movies = movieModelFromJson(jsonString);
     emit(HomeSuccessState(movieList: movies));
   }

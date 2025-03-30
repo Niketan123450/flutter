@@ -65,7 +65,7 @@ class WelcomeScreen extends StatelessWidget {
                 children: [
                   GestureDetector(
                     onTap: () {
-                      loginRegisterBloc.add(OnRegisterNavigateEvent());
+                      loginRegisterBloc.add(RegisterNavigateEvent());
                     },
                     child: Container(
                       width: screenWidth * 0.8,
@@ -91,7 +91,7 @@ class WelcomeScreen extends StatelessWidget {
                   const SizedBox(height: 10),
                   GestureDetector(
                     onTap: () {
-                      loginRegisterBloc.add(OnLoginNavigateEvent());
+                      loginRegisterBloc.add(LoginNavigateEvent());
                     },
                     child: Container(
                       width: screenWidth * 0.8,

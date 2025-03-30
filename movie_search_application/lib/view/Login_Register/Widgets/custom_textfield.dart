@@ -52,7 +52,7 @@ class CustomTextfield extends StatelessWidget {
                       ? const SizedBox()
                       : GestureDetector(
                         onTap: () {
-                          bloc.add(OnShowPasswordEvent());
+                          bloc.add(ShowPasswordEvent());
                         },
                         child: Icon(
                           bloc.isPasswordVisible

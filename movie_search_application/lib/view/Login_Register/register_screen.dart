@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:movie_search_application/common/helper/message/display_message.dart';
 import 'package:movie_search_application/controller/bloc/login_register_bloc/login_register_bloc.dart';
 import 'package:movie_search_application/controller/bloc/login_register_bloc/login_register_event.dart';
 import 'package:movie_search_application/controller/bloc/login_register_bloc/login_register_state.dart';
 import 'package:movie_search_application/core/configs/theme/app_colors.dart';
-import 'package:movie_search_application/core/configs/theme/app_text.dart';
 import 'package:movie_search_application/common/Widgets/custom_button.dart';
 import 'package:movie_search_application/view/Login_Register/Widgets/custom_dropdown.dart';
-
-import 'package:movie_search_application/common/Widgets/custom_snackbar.dart';
 import 'package:movie_search_application/view/Login_Register/Widgets/custom_textfield.dart';
 import 'package:movie_search_application/view/Login_Register/login_screen.dart';
 
@@ -36,7 +34,7 @@ class RegisterScreen extends StatelessWidget {
               (route) => false,
             );
           } else if (state is LoginRegisterWithDataErrorState) {
-            CustomSnackbar.customSnackbar(context, state.error);
+            DisplayMessage.showMessage(message: state.error, context: context);
           }
         },
         builder: (context, state) {
@@ -157,13 +155,12 @@ class RegisterScreen extends StatelessWidget {
                               onTap: () {
                                 ///ADDING RegisterWithDataButtonNavigateEvent TO LOGINREGISTERBLOC
                                 bloc.add(
-                                  OnRegisterWithDataEvent(
+                                  RegisterWithDataEvent(
                                     userCredential: {
                                       "email": bloc.emailController.text,
                                       "password": bloc.passwordController.text,
                                       "username": bloc.usernameController.text,
                                       "lang": bloc.selectedDropdownValue,
-                                      "gender": bloc.selectedGender,
                                     },
                                   ),
                                 );
@@ -182,7 +179,7 @@ class RegisterScreen extends StatelessWidget {
                             GestureDetector(
                               onTap: () {
                                 ///ADDING LoginButtonNavigateEvent TO LOGINREGISTERBLOC
-                                bloc.add(OnLoginNavigateEvent());
+                                bloc.add(LoginNavigateEvent());
                               },
                               child: const Center(
                                 child: Row(

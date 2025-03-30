@@ -16,7 +16,7 @@ class NavbarScreen extends StatelessWidget {
       create:
           (_) =>
               NavbarBloc()..add(
-                OnNavbarTapEvent(newIndex: selectedIndex),
+                NavbarTapEvent(newIndex: selectedIndex),
               ), // Set initial index
       child: const NavbarView(),
     );
@@ -40,7 +40,7 @@ class NavbarView extends StatelessWidget {
                 currentIndex: state.currentIndex,
                 onTap: (index) {
                   context.read<NavbarBloc>().add(
-                    OnNavbarTapEvent(newIndex: index),
+                    NavbarTapEvent(newIndex: index),
                   );
                 },
                 type: BottomNavigationBarType.fixed,

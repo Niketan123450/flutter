@@ -9,8 +9,6 @@ import 'package:movie_search_application/controller/session_data.dart';
 class BookmarkBloc extends Bloc<BookmarkEvent, BookmarkState> {
   BookmarkBloc() : super(BookmarkInitialState()) {
     on<BookmarkInitialEvent>(bookmarkInitialEvent);
-    on<AddBookmarkEvent>(addBookmarkEvent);
-    on<RemoveBookmarkEvent>(removeBookmarkEvent);
   }
 
   Future<void> bookmarkInitialEvent(
@@ -19,27 +17,6 @@ class BookmarkBloc extends Bloc<BookmarkEvent, BookmarkState> {
   ) async {
     emit(BookmarkLoadingState());
     List<MovieModel> movies = await SessionData.getBookmarks();
-    emit(BookmarkSuccessState(bookmarkList: movies));
-  }
-
-  // Add Movie to Bookmark
-  Future<void> addBookmarkEvent(
-    AddBookmarkEvent event,
-    Emitter<BookmarkState> emit,
-  ) async {
-    List<MovieModel> movies = await SessionData.getBookmarks();
-    movies.add(event.movie);
-    await SessionData.storeBookmarks(movies);
-    emit(BookmarkSuccessState(bookmarkList: movies));
-  }
-
-  Future<void> removeBookmarkEvent(
-    RemoveBookmarkEvent event,
-    Emitter<BookmarkState> emit,
-  ) async {
-    List<MovieModel> movies = await SessionData.getBookmarks();
-    movies.removeWhere((m) => m.title == event.movie.title);
-    await SessionData.storeBookmarks(movies);
     emit(BookmarkSuccessState(bookmarkList: movies));
   }
 }

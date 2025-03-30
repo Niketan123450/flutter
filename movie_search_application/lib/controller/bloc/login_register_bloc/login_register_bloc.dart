@@ -8,15 +8,15 @@ import 'package:movie_search_application/controller/firebase/firebase_data.dart'
 
 class LoginRegisterBloc extends Bloc<LoginRegisterEvent, LoginRegisterState> {
   LoginRegisterBloc() : super(LoginRegisterInitialState()) {
-    on<OnLoginNavigateEvent>(onLoginNavigateEvent);
-    on<OnRegisterNavigateEvent>(onRegisterNavigateEvent);
-    on<OnLoginWithDataEvent>(onLoginWithDataEvent);
-    on<OnRegisterWithDataEvent>(onRegisterWithDataEvent);
+    on<LoginNavigateEvent>(onLoginNavigateEvent);
+    on<RegisterNavigateEvent>(onRegisterNavigateEvent);
+    on<LoginWithDataEvent>(onLoginWithDataEvent);
+    on<RegisterWithDataEvent>(onRegisterWithDataEvent);
 
-    on<OnShowPasswordEvent>(onShowPasswordEvent);
-    on<OnDropdownSelectionEvent>(onDropdownSelectionEvent);
-    on<OnRadioSelectionEvent>(onRadioSelectionEvent);
-    on<OnCheckboxSelectionEvent>(onCheckboxSelectionEvent);
+    on<ShowPasswordEvent>(onShowPasswordEvent);
+    on<DropdownSelectionEvent>(onDropdownSelectionEvent);
+
+    on<CheckboxSelectionEvent>(onCheckboxSelectionEvent);
   }
 
   final TextEditingController emailController = TextEditingController();
@@ -25,31 +25,34 @@ class LoginRegisterBloc extends Bloc<LoginRegisterEvent, LoginRegisterState> {
 
   bool isPasswordVisible = true;
   String selectedDropdownValue = "";
-  String selectedGender = "";
+
   bool isChecked = false;
 
   FutureOr<void> onLoginNavigateEvent(
-    OnLoginNavigateEvent event,
+    LoginNavigateEvent event,
     Emitter<LoginRegisterState> emit,
   ) {
     emit(LoginNavigateState());
   }
 
   FutureOr<void> onRegisterNavigateEvent(
-    OnRegisterNavigateEvent event,
+    RegisterNavigateEvent event,
     Emitter<LoginRegisterState> emit,
   ) {
     emit(RegisterNavigateState());
   }
 
   FutureOr<void> onLoginWithDataEvent(
-    OnLoginWithDataEvent event,
+    LoginWithDataEvent event,
     Emitter<LoginRegisterState> emit,
   ) async {
     if (event.userCredential["email"].trim()! != "" &&
         event.userCredential["password"].trim() != "") {
       String res = await FirebaseData.loginUser(event.userCredential);
       if (res == "true") {
+        emit(
+          LoginRegisterWithDataSuccessState(successMessage: "Login Successful"),
+        );
         emit(LoginWithDataState());
       } else {
         emit(LoginRegisterWithDataErrorState(error: res));
@@ -64,13 +67,12 @@ class LoginRegisterBloc extends Bloc<LoginRegisterEvent, LoginRegisterState> {
   }
 
   FutureOr<void> onRegisterWithDataEvent(
-    OnRegisterWithDataEvent event,
+    RegisterWithDataEvent event,
     Emitter<LoginRegisterState> emit,
   ) async {
     if (event.userCredential["email"].trim()! != "" &&
         event.userCredential["password"].trim() != "" &&
-        event.userCredential["username"].trim() != "" &&
-        event.userCredential["gender"].trim() != "") {
+        event.userCredential["username"].trim() != "") {
       String res = await FirebaseData.registerUser(event.userCredential);
       if (res == "true") {
         emit(LoginNavigateState());
@@ -83,7 +85,7 @@ class LoginRegisterBloc extends Bloc<LoginRegisterEvent, LoginRegisterState> {
   }
 
   FutureOr<void> onShowPasswordEvent(
-    OnShowPasswordEvent event,
+    ShowPasswordEvent event,
     Emitter<LoginRegisterState> emit,
   ) {
     isPasswordVisible = !isPasswordVisible;
@@ -91,23 +93,15 @@ class LoginRegisterBloc extends Bloc<LoginRegisterEvent, LoginRegisterState> {
   }
 
   FutureOr<void> onDropdownSelectionEvent(
-    OnDropdownSelectionEvent event,
+    DropdownSelectionEvent event,
     Emitter<LoginRegisterState> emit,
   ) {
     selectedDropdownValue = event.selectedValue;
     emit(DropdownSelectionState(selectedValue: selectedDropdownValue));
   }
 
-  FutureOr<void> onRadioSelectionEvent(
-    OnRadioSelectionEvent event,
-    Emitter<LoginRegisterState> emit,
-  ) {
-    selectedGender = event.selectedValue;
-    emit(RadioSelectionState(selectedValue: selectedGender));
-  }
-
   FutureOr<void> onCheckboxSelectionEvent(
-    OnCheckboxSelectionEvent event,
+    CheckboxSelectionEvent event,
     Emitter<LoginRegisterState> emit,
   ) {
     isChecked = event.isChecked;

@@ -38,7 +38,6 @@ dependencies:
   reactive_button: ^0.0.9
   dartz:
   get_it:
-  dio:
   logger:
   firebase_core: ^3.12.1
   firebase_auth: ^5.5.1

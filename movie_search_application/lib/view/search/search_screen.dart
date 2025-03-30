@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movie_search_application/common/helper/navigation/app_navigation.dart';
 import 'package:movie_search_application/controller/bloc/search_bloc/search_bloc.dart';
 import 'package:movie_search_application/controller/bloc/search_bloc/search_event.dart';
 import 'package:movie_search_application/controller/bloc/search_bloc/search_state.dart';
 import 'package:movie_search_application/core/configs/theme/app_colors.dart';
+import 'package:movie_search_application/view/details/details_screen.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
@@ -13,13 +15,13 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
-  late SearchBloc _movieBloc;
+  late SearchBloc movieBloc;
 
   @override
   void initState() {
     super.initState();
-    _movieBloc = SearchBloc();
-    _movieBloc.add(LoadMoviesEvent());
+    movieBloc = SearchBloc();
+    movieBloc.add(LoadMoviesEvent());
   }
 
   @override
@@ -32,16 +34,14 @@ class _SearchScreenState extends State<SearchScreen> {
           padding: const EdgeInsets.all(8.0),
           child: Column(
             children: [
-              // Search Field
               TextField(
                 onChanged: (query) {
-                  _movieBloc.add(SearchMoviesEvent(query));
+                  movieBloc.add(SearchMoviesEvent(query));
                 },
+                style: const TextStyle(color: Colors.white, fontSize: 16),
                 decoration: InputDecoration(
                   hintText: 'Search...',
-                  hintStyle: const TextStyle(
-                    color: Colors.white54,
-                  ), // Optional for hint color
+                  hintStyle: const TextStyle(color: Colors.white54),
                   prefixIcon: const Icon(
                     Icons.search,
                     color: AppColors.primary,
@@ -51,40 +51,32 @@ class _SearchScreenState extends State<SearchScreen> {
                       Icons.notifications,
                       color: AppColors.primary,
                     ),
-                    onPressed: () {
-                      // Add your notification logic here
-                    },
+                    onPressed: () {},
                   ),
                   filled: true,
-                  fillColor: Colors.black, // Background color of the text field
-                  // Add borders for different states
+                  fillColor: Colors.black,
+
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12.0),
                     borderSide: const BorderSide(
-                      color: AppColors.primary, // Border when not focused
+                      color: AppColors.primary,
                       width: 1.5,
                     ),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12.0),
                     borderSide: const BorderSide(
-                      color: AppColors.primary, // Border when focused
+                      color: AppColors.primary,
                       width: 2.0,
                     ),
                   ),
                   errorBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12.0),
-                    borderSide: const BorderSide(
-                      color: Colors.red, // Border when there's an error
-                      width: 1.5,
-                    ),
+                    borderSide: const BorderSide(color: Colors.red, width: 1.5),
                   ),
                   focusedErrorBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12.0),
-                    borderSide: const BorderSide(
-                      color: Colors.red, // Border when focused and error
-                      width: 2.0,
-                    ),
+                    borderSide: const BorderSide(color: Colors.red, width: 2.0),
                   ),
                 ),
               ),
@@ -93,7 +85,7 @@ class _SearchScreenState extends State<SearchScreen> {
               // Movie List
               Expanded(
                 child: BlocBuilder<SearchBloc, SearchState>(
-                  bloc: _movieBloc,
+                  bloc: movieBloc,
                   builder: (context, state) {
                     if (state is SearchLoadingState) {
                       return const Center(child: CircularProgressIndicator());
@@ -135,20 +127,28 @@ class _SearchScreenState extends State<SearchScreen> {
                         itemCount: movies.length,
                         itemBuilder: (context, index) {
                           final movie = movies[index];
-                          return Card(
-                            color: AppColors.secondBackground,
-                            margin: const EdgeInsets.symmetric(vertical: 8.0),
-                            child: ListTile(
-                              textColor: AppColors.primary,
+                          return GestureDetector(
+                            onTap: () {
+                              AppNavigator.pushReplacement(
+                                context,
+                                DetailsScreen(movieModel: movie),
+                              );
+                            },
+                            child: Card(
+                              color: AppColors.secondBackground,
+                              margin: const EdgeInsets.symmetric(vertical: 8.0),
+                              child: ListTile(
+                                textColor: AppColors.primary,
 
-                              leading: Image.network(
-                                movie.posterUrl!,
-                                width: 50,
-                                height: 100,
-                                fit: BoxFit.cover,
+                                leading: Image.network(
+                                  movie.posterUrl!,
+                                  width: 50,
+                                  height: 100,
+                                  fit: BoxFit.cover,
+                                ),
+                                title: Text(movie.title!),
+                                subtitle: Text(movie.genre!),
                               ),
-                              title: Text(movie.title!),
-                              subtitle: Text(movie.genre!),
                             ),
                           );
                         },

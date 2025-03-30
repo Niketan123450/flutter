@@ -7,7 +7,7 @@ import 'package:movie_search_application/controller/bloc/home_bloc/home_event.da
 import 'package:movie_search_application/controller/bloc/home_bloc/home_state.dart';
 import 'package:movie_search_application/core/configs/theme/app_colors.dart';
 
-import 'package:movie_search_application/view/home/SeeAll/see_all_screen.dart';
+import 'package:movie_search_application/view/see_all/see_all_screen.dart';
 import 'package:movie_search_application/view/home/widget/image_curcer.dart';
 import 'package:movie_search_application/common/Widgets/search_container.dart';
 import 'package:movie_search_application/view/details/details_screen.dart';

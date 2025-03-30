@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:movie_search_application/controller/session_data.dart';
@@ -28,6 +30,7 @@ class FirebaseData {
   }
 
   static Future<String> loginUser(Map userData) async {
+    log("in login");
     try {
       /// Login user with email and password
       await FirebaseAuth.instance.signInWithEmailAndPassword(

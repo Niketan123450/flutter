@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-// import 'package:flutter/services.dart' show rootBundle;
+
 import 'package:movie_search_application/controller/bloc/search_bloc/search_event.dart';
 import 'package:movie_search_application/controller/bloc/search_bloc/search_state.dart';
 import 'package:movie_search_application/model/movie_model.dart';
@@ -10,11 +10,11 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
   List<MovieModel> movieList = [];
 
   SearchBloc() : super(SearchInitialState()) {
-    on<LoadMoviesEvent>(_loadMovies);
-    on<SearchMoviesEvent>(_searchMovies);
+    on<LoadMoviesEvent>(loadMovies);
+    on<SearchMoviesEvent>(searchMovies);
   }
 
-  Future<void> _loadMovies(
+  Future<void> loadMovies(
     LoadMoviesEvent event,
     Emitter<SearchState> emit,
   ) async {
@@ -22,7 +22,6 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
     try {
       String jsonString = await rootBundle.loadString('assets/movies.json');
 
-      // Parse JSON and return list of MovieModel
       movieList = movieModelFromJson(jsonString);
       emit(SearchLoadedState(movieList));
     } catch (e) {
@@ -30,7 +29,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
     }
   }
 
-  void _searchMovies(SearchMoviesEvent event, Emitter<SearchState> emit) {
+  void searchMovies(SearchMoviesEvent event, Emitter<SearchState> emit) {
     final query = event.query.toLowerCase();
     final filteredMovies =
         movieList

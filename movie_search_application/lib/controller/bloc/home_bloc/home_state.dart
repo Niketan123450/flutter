@@ -2,8 +2,6 @@ import 'package:movie_search_application/model/movie_model.dart';
 
 abstract class HomeState {}
 
-abstract class HomeActionState extends HomeState {}
-
 class HomeInitialState extends HomeState {}
 
 class HomeLoadingState extends HomeState {}

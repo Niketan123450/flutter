@@ -7,16 +7,13 @@ class SessionData {
   static bool? isLogin;
   static String? email;
   static String? username;
-  static String? address;
-  static const String bookmarkKey = 'bookmarkList';
-  static const String watchListKey = 'watchListList';
-  // Store List<MovieModel> as JSON
+
   static Future<void> storeBookmarks(List<MovieModel> movies) async {
     final SharedPreferences pref = await SharedPreferences.getInstance();
     String moviesJson = jsonEncode(
       movies.map((movie) => movie.toJson()).toList(),
     );
-    await pref.setString(bookmarkKey, moviesJson);
+    await pref.setString('bookmarkList', moviesJson);
   }
 
   static Future<void> storeWatchLists(List<MovieModel> movies) async {
@@ -24,13 +21,12 @@ class SessionData {
     String moviesJson = jsonEncode(
       movies.map((movie) => movie.toJson()).toList(),
     );
-    await pref.setString(watchListKey, moviesJson);
+    await pref.setString('watchListList', moviesJson);
   }
 
-  // Get List<MovieModel> from JSON
   static Future<List<MovieModel>> getBookmarks() async {
     final SharedPreferences pref = await SharedPreferences.getInstance();
-    String? moviesJson = pref.getString(bookmarkKey);
+    String? moviesJson = pref.getString('bookmarkList');
 
     if (moviesJson != null) {
       List<dynamic> jsonList = jsonDecode(moviesJson);
@@ -41,7 +37,7 @@ class SessionData {
 
   static Future<List<MovieModel>> getWatchLists() async {
     final SharedPreferences pref = await SharedPreferences.getInstance();
-    String? moviesJson = pref.getString(watchListKey);
+    String? moviesJson = pref.getString('bookmarkList');
 
     if (moviesJson != null) {
       List<dynamic> jsonList = jsonDecode(moviesJson);
@@ -50,7 +46,6 @@ class SessionData {
     return [];
   }
 
-  // Remove a movie from the bookmark list
   static Future<void> removeBookmark(MovieModel movie) async {
     List<MovieModel> movies = await getBookmarks();
     movies.removeWhere((m) => m.title == movie.title);
@@ -63,7 +58,6 @@ class SessionData {
     await storeWatchLists(movies);
   }
 
-  // Check if a movie is bookmarked
   static Future<bool> isBookmarked(MovieModel movie) async {
     List<MovieModel> movies = await getBookmarks();
     return movies.any((m) => m.title == movie.title);

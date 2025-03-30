@@ -4,7 +4,7 @@
       "title": "Inception",
       "posterUrl": "https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_FMjpg_UX1000_.jpg",
       "description": "A skilled thief is given a chance to erase his criminal record.",
-      "rating": 4.5,
+      "rating": 4,
       "duration": "2hr 20m",
       "genre": "Sci-Fi, Thriller",
       "releaseDate": "2010-07-16"
@@ -13,7 +13,7 @@
       "title": "The Dark Knight",
       "posterUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpvyijfsP4F8o9bqAZc6bxCdbAYeKc582P1A&s",
       "description": "Batman faces the Joker, a criminal mastermind who wants to bring chaos to Gotham.",
-      "rating": 4.9,
+      "rating": 3,
       "duration": "2hr 32m",
       "genre": "Action, Crime, Drama",
       "releaseDate": "2008-07-18"
@@ -22,7 +22,7 @@
       "title": "Interstellar",
       "posterUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRp0cRrnADXNCrVT8KwATj-6rJHQ28r7z8-WA&s",
       "description": "A team of explorers travels through a wormhole in space to save humanity.",
-      "rating": 4.7,
+      "rating": 5,
       "duration": "2hr 49m",
       "genre": "Sci-Fi, Drama, Adventure",
       "releaseDate": "2014-11-07"
@@ -31,7 +31,7 @@
       "title": "Avatar",
       "posterUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYK12l6BER5Omfzlc-nopGmTzO1udleH_E3g&s",
       "description": "A paraplegic Marine dispatched to Pandora becomes torn between following orders and protecting the world he feels is his home.",
-      "rating": 4.3,
+      "rating": 4,
       "duration": "2hr 42m",
       "genre": "Action, Adventure, Fantasy",
       "releaseDate": "2009-12-18"
@@ -40,7 +40,7 @@
       "title": "Titanic",
       "posterUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMzsZYpklmQ-dGmLsdqTfiqRTqSA2YRbHPSQ&s",
       "description": "A romance blossoms between Jack and Rose aboard the ill-fated RMS Titanic.",
-      "rating": 4.8,
+      "rating": 2,
       "duration": "3hr 15m",
       "genre": "Romance, Drama",
       "releaseDate": "1997-12-19"
@@ -49,7 +49,7 @@
       "title": "The Matrix",
       "posterUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZNl1EYS9z4PfNViNWMK_V5ZspshcWfksobw&s",
       "description": "A hacker discovers the shocking truth about his world and his role in the war against its controllers.",
-      "rating": 4.6,
+      "rating": 3,
       "duration": "2hr 16m",
       "genre": "Sci-Fi, Action",
       "releaseDate": "1999-03-31"
@@ -58,7 +58,7 @@
       "title": "Forrest Gump",
       "posterUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRN_76EybIyj6iIRPGoLg-VPRDJLX74ydCKbQ&s",
       "description": "The story of a man with a low IQ who influences historical events.",
-      "rating": 4.8,
+      "rating": 4,
       "duration": "2hr 22m",
       "genre": "Drama, Romance",
       "releaseDate": "1994-07-06"
@@ -67,7 +67,7 @@
       "title": "Gladiator",
       "posterUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRaRGc__T4VoKCsw2INBaxHysufNE6Eisnp6A&s",
       "description": "A betrayed Roman general seeks vengeance against the corrupt emperor.",
-      "rating": 4.7,
+      "rating": 5,
       "duration": "2hr 35m",
       "genre": "Action, Drama",
       "releaseDate": "2000-05-05"
@@ -76,7 +76,7 @@
       "title": "The Shawshank Redemption",
       "posterUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAORn2QCTSgeqnuHYdJgTKX_KrWX_tkzTF1Q&s",
       "description": "Two imprisoned men bond over decades, finding solace and redemption through acts of common decency.",
-      "rating": 4.9,
+      "rating": 3,
       "duration": "2hr 22m",
       "genre": "Drama",
       "releaseDate": "1994-09-23"
@@ -85,9 +85,9 @@
       "title": "Avengers: Endgame",
       "posterUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7cqXe-4_IsWb5bsRF3DcGnpp2njSd_XIJcA&s",
       "description": "After the devastating events of Infinity War, the Avengers assemble once more to reverse Thanos' actions and restore balance.",
-      "rating": 4.6,
+      "rating": 5,
       "duration": "3hr 1m",
-      "genre": "Action, Adventure, Sci-Fi",
+      "genre": "Action, ",
       "releaseDate": "2019-04-26"
     }
   ]
