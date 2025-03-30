@@ -5,7 +5,7 @@ import 'package:bloc/bloc.dart';
 import 'package:movie_search_application/controller/bloc/details_bloc/details_event.dart';
 import 'package:movie_search_application/controller/bloc/details_bloc/details_state.dart';
 import 'package:movie_search_application/model/movie_model.dart';
-import 'package:movie_search_application/controller/session_data.dart';
+import 'package:movie_search_application/controller/shared_preferences/session_data.dart';
 
 class DetailsBloc extends Bloc<DetailsEvent, DetailsState> {
   DetailsBloc() : super(DetailsInitialState()) {
