@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:movie_search_application/controller/shared_preferences/session_data.dart';
+import 'package:movie_search_application/core/services/session_data.dart';
 
 class FirebaseData {
   /// creating object of Firebase to access collection data

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:movie_search_application/controller/shared_preferences/session_data.dart';
+import 'package:movie_search_application/core/services/session_data.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});

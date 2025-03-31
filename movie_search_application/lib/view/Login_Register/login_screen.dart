@@ -7,6 +7,7 @@ import 'package:movie_search_application/controller/bloc/login_register_bloc/log
 import 'package:movie_search_application/controller/bloc/login_register_bloc/login_register_state.dart';
 import 'package:movie_search_application/core/configs/theme/app_colors.dart';
 import 'package:movie_search_application/common/Widgets/custom_button.dart';
+import 'package:movie_search_application/core/service_locator.dart';
 
 import 'package:movie_search_application/view/Login_Register/Widgets/custom_textfield.dart';
 
@@ -15,7 +16,7 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final LoginRegisterBloc bloc = LoginRegisterBloc();
+    final LoginRegisterBloc bloc = getIt<LoginRegisterBloc>();
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(

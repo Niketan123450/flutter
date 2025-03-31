@@ -5,6 +5,7 @@ import 'package:movie_search_application/controller/bloc/search_bloc/search_bloc
 import 'package:movie_search_application/controller/bloc/search_bloc/search_event.dart';
 import 'package:movie_search_application/controller/bloc/search_bloc/search_state.dart';
 import 'package:movie_search_application/core/configs/theme/app_colors.dart';
+import 'package:movie_search_application/core/service_locator.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
@@ -19,7 +20,7 @@ class _SearchScreenState extends State<SearchScreen> {
   @override
   void initState() {
     super.initState();
-    movieBloc = SearchBloc();
+    movieBloc = getIt<SearchBloc>();
     movieBloc.add(LoadMoviesEvent());
   }
 

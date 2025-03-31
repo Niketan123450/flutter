@@ -9,6 +9,7 @@ import 'package:movie_search_application/controller/bloc/watchlist_bloc/watchlis
 import 'package:movie_search_application/controller/bloc/watchlist_bloc/watchlist_state.dart';
 import 'package:movie_search_application/core/configs/theme/app_colors.dart';
 import 'package:movie_search_application/core/configs/theme/app_text.dart';
+import 'package:movie_search_application/core/service_locator.dart';
 
 class WatchListScreen extends StatefulWidget {
   const WatchListScreen({super.key});
@@ -20,8 +21,10 @@ class WatchListScreen extends StatefulWidget {
 class _WatchListScreenState extends State<WatchListScreen> {
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => WatchListBloc()..add(WatchListInitialEvent()),
+    return BlocProvider.value(
+      // create: (context) => WatchListBloc()..add(WatchListInitialEvent()),
+      // create: (context) => getIt<WatchListBloc>()..add(WatchListInitialEvent()),
+      value: getIt<WatchListBloc>()..add(WatchListInitialEvent()),
       child: Scaffold(
         backgroundColor: Colors.black,
         appBar: AppBar(

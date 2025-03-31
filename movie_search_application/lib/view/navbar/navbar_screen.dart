@@ -4,6 +4,7 @@ import 'package:movie_search_application/controller/bloc/navbar_bloc/navbar_bloc
 import 'package:movie_search_application/controller/bloc/navbar_bloc/navbar_event.dart';
 import 'package:movie_search_application/controller/bloc/navbar_bloc/navbar_state.dart';
 import 'package:movie_search_application/core/configs/theme/app_colors.dart';
+import 'package:movie_search_application/core/service_locator.dart';
 
 class NavbarScreen extends StatelessWidget {
   final int selectedIndex;
@@ -12,8 +13,13 @@ class NavbarScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => NavbarBloc()..add(NavbarTapEvent(newIndex: selectedIndex)),
+    return BlocProvider.value(
+      // create: (_) => NavbarBloc()..add(NavbarTapEvent(newIndex: selectedIndex)),
+      // create: (_) => NavbarBloc()..add(NavbarTapEvent(newIndex: selectedIndex)),
+      // create:
+      //     (context) =>
+      //         getIt<NavbarBloc>()..add(NavbarTapEvent(newIndex: selectedIndex)),
+      value: getIt<NavbarBloc>()..add(NavbarTapEvent(newIndex: selectedIndex)),
       child: const NavbarView(),
     );
   }

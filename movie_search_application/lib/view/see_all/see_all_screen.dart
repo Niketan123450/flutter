@@ -26,6 +26,7 @@ class _SeeAllScreenState extends State<SeeAllScreen> {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => HomeBloc()..add(HomeInitialEvent()),
+
       child: Scaffold(
         backgroundColor: Colors.black,
         body: BlocConsumer<HomeBloc, HomeState>(

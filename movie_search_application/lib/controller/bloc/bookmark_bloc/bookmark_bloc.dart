@@ -4,7 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:movie_search_application/controller/bloc/bookmark_bloc/bookmark_event.dart';
 import 'package:movie_search_application/controller/bloc/bookmark_bloc/bookmark_state.dart';
 import 'package:movie_search_application/model/movie_model.dart';
-import 'package:movie_search_application/controller/shared_preferences/session_data.dart';
+import 'package:movie_search_application/core/services/session_data.dart';
 
 class BookmarkBloc extends Bloc<BookmarkEvent, BookmarkState> {
   BookmarkBloc() : super(BookmarkInitialState()) {

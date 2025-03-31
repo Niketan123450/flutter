@@ -7,6 +7,7 @@ import 'package:movie_search_application/controller/bloc/home_bloc/home_bloc.dar
 import 'package:movie_search_application/controller/bloc/home_bloc/home_event.dart';
 import 'package:movie_search_application/controller/bloc/home_bloc/home_state.dart';
 import 'package:movie_search_application/core/configs/theme/app_colors.dart';
+import 'package:movie_search_application/core/service_locator.dart';
 
 import 'package:movie_search_application/view/home/widget/image_curcer.dart';
 import 'package:movie_search_application/common/Widgets/search_container.dart';
@@ -26,8 +27,10 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => HomeBloc()..add(HomeInitialEvent()),
+    return BlocProvider.value(
+      // create: (context) => getIt<HomeBloc>()..add(HomeInitialEvent()),
+      // create: (context) => HomeBloc()..add(HomeInitialEvent()),
+      value: getIt<HomeBloc>()..add(HomeInitialEvent()),
       child: Scaffold(
         backgroundColor: Colors.black,
         body: BlocConsumer<HomeBloc, HomeState>(

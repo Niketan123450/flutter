@@ -1,7 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
-import 'package:movie_search_application/common/helper/navigation/app_navigation.dart';
+import 'package:movie_search_application/core/routes/go_router.dart';
+import 'package:movie_search_application/core/service_locator.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -14,6 +15,7 @@ void main() async {
       projectId: "movie-search-application-a1ebe",
     ),
   );
+  setupLocator();
   runApp(const MyApp());
 }
 

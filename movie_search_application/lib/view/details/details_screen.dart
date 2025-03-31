@@ -10,6 +10,7 @@ import 'package:movie_search_application/controller/bloc/details_bloc/details_st
 import 'package:movie_search_application/core/configs/theme/app_colors.dart';
 import 'package:movie_search_application/core/configs/theme/app_text.dart';
 import 'package:movie_search_application/model/movie_model.dart';
+import 'package:movie_search_application/core/service_locator.dart';
 
 class DetailsScreen extends StatefulWidget {
   final MovieModel movieModel;
@@ -22,8 +23,10 @@ class DetailsScreen extends StatefulWidget {
 class _DetailsScreenState extends State<DetailsScreen> {
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => DetailsBloc()..add(DetailsInitialEvent()),
+    return BlocProvider.value(
+      // create: (context) => DetailsBloc()..add(DetailsInitialEvent()),
+      // create: (context) => getIt<DetailsBloc>()..add(DetailsInitialEvent()),
+      value: getIt<DetailsBloc>()..add(DetailsInitialEvent()),
       child: Scaffold(
         backgroundColor: Colors.black,
 

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_search_application/controller/bloc/login_register_bloc/login_register_event.dart';
 import 'package:movie_search_application/controller/bloc/login_register_bloc/login_register_state.dart';
-import 'package:movie_search_application/controller/firebase/firebase_data.dart';
+import 'package:movie_search_application/core/services/firebase_data.dart';
 
 class LoginRegisterBloc extends Bloc<LoginRegisterEvent, LoginRegisterState> {
   LoginRegisterBloc() : super(LoginRegisterInitialState()) {

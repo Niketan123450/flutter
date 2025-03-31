@@ -10,6 +10,7 @@ import 'package:movie_search_application/controller/bloc/bookmark_bloc/bookmark_
 import 'package:movie_search_application/controller/bloc/bookmark_bloc/bookmark_state.dart';
 import 'package:movie_search_application/core/configs/theme/app_colors.dart';
 import 'package:movie_search_application/core/configs/theme/app_text.dart';
+import 'package:movie_search_application/core/service_locator.dart';
 
 class BookmarksScreen extends StatefulWidget {
   const BookmarksScreen({super.key});
@@ -21,8 +22,8 @@ class BookmarksScreen extends StatefulWidget {
 class _BookmarksScreenState extends State<BookmarksScreen> {
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => BookmarkBloc()..add(BookmarkInitialEvent()),
+    return BlocProvider.value(
+      value: getIt<BookmarkBloc>()..add(BookmarkInitialEvent()),
       child: Scaffold(
         backgroundColor: Colors.black,
         appBar: AppBar(
