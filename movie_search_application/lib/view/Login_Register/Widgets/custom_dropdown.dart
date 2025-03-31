@@ -27,17 +27,11 @@ class CustomDropdown extends StatelessWidget {
           decoration: BoxDecoration(
             color: const Color.fromRGBO(250, 250, 250, 1),
             borderRadius: BorderRadius.circular(8),
-            border: Border.all(
-              color: Colors.grey.shade300,
-              width: 1,
-            ), // Optional border
+            border: Border.all(color: Colors.grey.shade300, width: 1),
           ),
           child: Row(
             children: [
-              const Icon(
-                Icons.language, // Language Icon
-                color: Colors.grey,
-              ),
+              const Icon(Icons.language, color: Colors.grey),
               const SizedBox(width: 8),
               Expanded(
                 child: DropdownButtonHideUnderline(

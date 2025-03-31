@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:movie_search_application/common/helper/navigation/app_navigation.dart';
+
 import 'package:movie_search_application/controller/bloc/home_bloc/home_bloc.dart';
 import 'package:movie_search_application/controller/bloc/home_bloc/home_event.dart';
 import 'package:movie_search_application/controller/bloc/home_bloc/home_state.dart';
 import 'package:movie_search_application/core/configs/theme/app_colors.dart';
 
-import 'package:movie_search_application/view/see_all/see_all_screen.dart';
 import 'package:movie_search_application/view/home/widget/image_curcer.dart';
 import 'package:movie_search_application/common/Widgets/search_container.dart';
-import 'package:movie_search_application/view/details/details_screen.dart';
-import 'package:movie_search_application/view/search/search_screen.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -47,7 +45,7 @@ class _HomePageState extends State<HomePage> {
                       color: Colors.black,
                       child: GestureDetector(
                         onTap: () {
-                          AppNavigator.push(context, SearchScreen());
+                          context.push('/search');
                         },
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 10.0),
@@ -86,10 +84,7 @@ class _HomePageState extends State<HomePage> {
                                   Spacer(),
                                   GestureDetector(
                                     onTap: () {
-                                      AppNavigator.push(
-                                        context,
-                                        SeeAllScreen(),
-                                      );
+                                      context.push('/seeAll');
                                     },
                                     child: Text(
                                       "See All",
@@ -114,30 +109,23 @@ class _HomePageState extends State<HomePage> {
                             ),
                             GridView.builder(
                               shrinkWrap: true,
-                              // scrollDirection: Axis.horizontal, // Horizontal scrolling
+                              // scrollDirection: Axis.horizontal,
                               physics: const NeverScrollableScrollPhysics(),
                               gridDelegate:
                                   const SliverGridDelegateWithFixedCrossAxisCount(
-                                    crossAxisCount:
-                                        3, // Only 1 row for horizontal scrolling
-                                    // mainAxisExtent: 150, // Set width of each container
+                                    crossAxisCount: 3,
+                                    // mainAxisExtent: 150,
                                     crossAxisSpacing: 0.1,
                                     childAspectRatio: 0.47,
-                                    mainAxisSpacing:
-                                        10, // Add spacing between containers
+                                    mainAxisSpacing: 10,
                                   ),
-                              itemCount:
-                                  state
-                                      .movieList
-                                      .length, // Number of items to display
+                              itemCount: state.movieList.length,
                               itemBuilder: (context, index) {
                                 return GestureDetector(
                                   onTap: () {
-                                    AppNavigator.push(
-                                      context,
-                                      DetailsScreen(
-                                        movieModel: state.movieList[index],
-                                      ),
+                                    context.push(
+                                      '/details',
+                                      extra: state.movieList[index],
                                     );
                                   },
                                   child: Padding(
@@ -163,7 +151,7 @@ class _HomePageState extends State<HomePage> {
                                                 MediaQuery.of(
                                                   context,
                                                 ).size.height *
-                                                0.2, // Set fixed height for image
+                                                0.2,
                                             decoration: BoxDecoration(
                                               image: DecorationImage(
                                                 image: NetworkImage(

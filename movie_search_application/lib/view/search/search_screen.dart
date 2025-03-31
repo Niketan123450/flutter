@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie_search_application/common/helper/navigation/app_navigation.dart';
+import 'package:go_router/go_router.dart';
 import 'package:movie_search_application/controller/bloc/search_bloc/search_bloc.dart';
 import 'package:movie_search_application/controller/bloc/search_bloc/search_event.dart';
 import 'package:movie_search_application/controller/bloc/search_bloc/search_state.dart';
 import 'package:movie_search_application/core/configs/theme/app_colors.dart';
-import 'package:movie_search_application/view/details/details_screen.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
@@ -82,7 +81,6 @@ class _SearchScreenState extends State<SearchScreen> {
               ),
               const SizedBox(height: 10),
 
-              // Movie List
               Expanded(
                 child: BlocBuilder<SearchBloc, SearchState>(
                   bloc: movieBloc,
@@ -129,10 +127,7 @@ class _SearchScreenState extends State<SearchScreen> {
                           final movie = movies[index];
                           return GestureDetector(
                             onTap: () {
-                              AppNavigator.pushReplacement(
-                                context,
-                                DetailsScreen(movieModel: movie),
-                              );
+                              context.replace('/details', extra: movie);
                             },
                             child: Card(
                               color: AppColors.secondBackground,

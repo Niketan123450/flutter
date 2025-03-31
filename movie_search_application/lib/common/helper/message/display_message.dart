@@ -11,13 +11,11 @@ class DisplayMessage {
     Color? backgroundColor,
     Duration duration = const Duration(seconds: 1),
   }) {
-    // Define default icon and background based on the error status
     IconData defaultIcon =
         isError ? Icons.error_outline : Icons.check_circle_outline;
     Color defaultBackground =
         isError ? Colors.redAccent : AppColors.secondBackground;
 
-    // Create the SnackBar
     var snackbar = SnackBar(
       content: Row(
         children: [
@@ -43,7 +41,6 @@ class DisplayMessage {
       elevation: 6.0,
     );
 
-    // Show the SnackBar
     ScaffoldMessenger.of(context).showSnackBar(snackbar);
   }
 }

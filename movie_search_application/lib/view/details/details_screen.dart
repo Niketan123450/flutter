@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:go_router/go_router.dart';
 import 'package:movie_search_application/common/helper/message/display_message.dart';
-import 'package:movie_search_application/common/helper/navigation/app_navigation.dart';
+
 import 'package:movie_search_application/controller/bloc/details_bloc/details_bloc.dart';
 import 'package:movie_search_application/controller/bloc/details_bloc/details_event.dart';
 import 'package:movie_search_application/controller/bloc/details_bloc/details_state.dart';
@@ -45,7 +46,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                         children: [
                           IconButton(
                             onPressed: () {
-                              AppNavigator.pop(context);
+                              context.pop();
                             },
                             icon: Icon(
                               Icons.arrow_back_ios_new_outlined,
@@ -234,8 +235,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                     children: [
                       RatingBar.builder(
                         itemSize: 20,
-                        initialRating:
-                            widget.movieModel.rating!, // Set initial rating
+                        initialRating: widget.movieModel.rating!,
                         // glowColor: ,
                         direction: Axis.horizontal,
                         allowHalfRating: true,

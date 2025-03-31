@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:movie_search_application/core/configs/theme/app_colors.dart';
 import 'package:movie_search_application/model/movie_model.dart';
 
+// ignore: must_be_immutable
 class ImageCarouselWidget extends StatefulWidget {
   List<MovieModel> movieModel;
   ImageCarouselWidget({super.key, required this.movieModel});

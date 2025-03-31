@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
-import 'package:movie_search_application/common/helper/navigation/app_navigation.dart';
 import 'package:movie_search_application/controller/bloc/home_bloc/home_bloc.dart';
 import 'package:movie_search_application/controller/bloc/home_bloc/home_event.dart';
 import 'package:movie_search_application/controller/bloc/home_bloc/home_state.dart';
 import 'package:movie_search_application/core/configs/theme/app_colors.dart';
 import 'package:movie_search_application/core/configs/theme/app_text.dart';
-
-import 'package:movie_search_application/view/details/details_screen.dart';
-import 'package:movie_search_application/view/search/search_screen.dart';
 
 class SeeAllScreen extends StatefulWidget {
   const SeeAllScreen({super.key});
@@ -28,9 +25,7 @@ class _SeeAllScreenState extends State<SeeAllScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create:
-          (context) =>
-              HomeBloc()..add(HomeInitialEvent()), // Correct Bloc creation
+      create: (context) => HomeBloc()..add(HomeInitialEvent()),
       child: Scaffold(
         backgroundColor: Colors.black,
         body: BlocConsumer<HomeBloc, HomeState>(
@@ -50,7 +45,7 @@ class _SeeAllScreenState extends State<SeeAllScreen> {
                         children: [
                           IconButton(
                             onPressed: () {
-                              AppNavigator.pop(context);
+                              context.pop();
                             },
                             icon: Icon(
                               Icons.arrow_back_ios_new_outlined,
@@ -61,7 +56,7 @@ class _SeeAllScreenState extends State<SeeAllScreen> {
                           Spacer(),
                           GestureDetector(
                             onTap: () {
-                              AppNavigator.push(context, SearchScreen());
+                              context.push('/search');
                             },
                             child: Padding(
                               padding: const EdgeInsets.symmetric(
@@ -106,30 +101,23 @@ class _SeeAllScreenState extends State<SeeAllScreen> {
                           children: [
                             GridView.builder(
                               shrinkWrap: true,
-                              // scrollDirection: Axis.horizontal, // Horizontal scrolling
+                              // scrollDirection: Axis.horizontal,
                               physics: const NeverScrollableScrollPhysics(),
                               gridDelegate:
                                   const SliverGridDelegateWithFixedCrossAxisCount(
-                                    crossAxisCount:
-                                        3, // Only 1 row for horizontal scrolling
-                                    // mainAxisExtent: 150, // Set width of each container
+                                    crossAxisCount: 3,
+                                    // mainAxisExtent: 150,
                                     crossAxisSpacing: 0.1,
                                     childAspectRatio: 0.50,
-                                    mainAxisSpacing:
-                                        0, // Add spacing between containers
+                                    mainAxisSpacing: 0,
                                   ),
-                              itemCount:
-                                  state
-                                      .movieList
-                                      .length, // Number of items to display
+                              itemCount: state.movieList.length,
                               itemBuilder: (context, index) {
                                 return GestureDetector(
                                   onTap: () {
-                                    AppNavigator.push(
-                                      context,
-                                      DetailsScreen(
-                                        movieModel: state.movieList[index],
-                                      ),
+                                    context.push(
+                                      '/details',
+                                      extra: state.movieList[index],
                                     );
                                   },
                                   child: Padding(
@@ -138,7 +126,7 @@ class _SeeAllScreenState extends State<SeeAllScreen> {
                                       horizontal: 6,
                                     ),
                                     child: Container(
-                                      // width: 150, // Reduced width to fit 3 containers
+                                      // width: 150,
                                       decoration: BoxDecoration(
                                         // color: Colors.amber,
                                         borderRadius: BorderRadius.circular(
@@ -155,7 +143,7 @@ class _SeeAllScreenState extends State<SeeAllScreen> {
                                                 MediaQuery.of(
                                                   context,
                                                 ).size.height *
-                                                0.2, // Set fixed height for image
+                                                0.2,
                                             decoration: BoxDecoration(
                                               image: DecorationImage(
                                                 image: NetworkImage(

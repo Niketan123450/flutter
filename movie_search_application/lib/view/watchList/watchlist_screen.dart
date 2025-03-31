@@ -2,16 +2,13 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:movie_search_application/common/helper/navigation/app_navigation.dart';
-
 import 'package:movie_search_application/controller/bloc/watchlist_bloc/watchlist_bloc.dart';
 import 'package:movie_search_application/controller/bloc/watchlist_bloc/watchlist_event.dart';
 import 'package:movie_search_application/controller/bloc/watchlist_bloc/watchlist_state.dart';
 import 'package:movie_search_application/core/configs/theme/app_colors.dart';
 import 'package:movie_search_application/core/configs/theme/app_text.dart';
-import 'package:movie_search_application/view/details/details_screen.dart';
 
 class WatchListScreen extends StatefulWidget {
   const WatchListScreen({super.key});
@@ -98,11 +95,9 @@ class _WatchListScreenState extends State<WatchListScreen> {
                         padding: const EdgeInsets.all(8.0),
                         child: GestureDetector(
                           onTap: () {
-                            AppNavigator.push(
-                              context,
-                              DetailsScreen(
-                                movieModel: state.watchListList[index],
-                              ),
+                            context.push(
+                              '/details',
+                              extra: state.watchListList[index],
                             );
                           },
                           child: Stack(
@@ -238,26 +233,6 @@ class _WatchListScreenState extends State<WatchListScreen> {
                               ),
                             ],
                           ),
-
-                          // Container(
-                          //   decoration: BoxDecoration(
-                          //     image: DecorationImage(
-                          //       image: NetworkImage(
-                          //         state.watchListList[index].posterUrl!,
-                          //       ),
-                          //       fit: BoxFit.cover,
-                          //     ),
-                          //     borderRadius: BorderRadius.circular(
-                          //       MediaQuery.of(context).size.width * 0.04,
-                          //     ),
-                          //     border: Border.all(
-                          //       color: AppColors.primary,
-                          //       width: 2,
-                          //     ),
-                          //   ),
-                          //   width: MediaQuery.of(context).size.width,
-                          //   height: MediaQuery.of(context).size.height * 0.25,
-                          // ),
                         ),
                       );
                     },

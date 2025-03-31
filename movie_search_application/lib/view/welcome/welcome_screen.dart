@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:movie_search_application/controller/bloc/login_register_bloc/login_register_bloc.dart';
 import 'package:movie_search_application/controller/bloc/login_register_bloc/login_register_event.dart';
 import 'package:movie_search_application/controller/bloc/login_register_bloc/login_register_state.dart';
 import 'package:movie_search_application/core/configs/theme/app_colors.dart';
-import 'package:movie_search_application/view/Login_Register/login_screen.dart';
-import 'package:movie_search_application/view/Login_Register/register_screen.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
@@ -24,15 +23,11 @@ class WelcomeScreen extends StatelessWidget {
         listener: (context, state) {
           /// Go to login screen
           if (state is LoginNavigateState) {
-            Navigator.of(context).push(
-              MaterialPageRoute(builder: (context) => const LoginScreen()),
-            );
+            context.push('/login');
           }
           /// Go to Register Screen
           else if (state is RegisterNavigateState) {
-            Navigator.of(context).push(
-              MaterialPageRoute(builder: (context) => const RegisterScreen()),
-            );
+            context.push('/register');
           }
         },
         child: Padding(

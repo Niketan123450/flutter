@@ -37,7 +37,7 @@ class SessionData {
 
   static Future<List<MovieModel>> getWatchLists() async {
     final SharedPreferences pref = await SharedPreferences.getInstance();
-    String? moviesJson = pref.getString('bookmarkList');
+    String? moviesJson = pref.getString('watchListList');
 
     if (moviesJson != null) {
       List<dynamic> jsonList = jsonDecode(moviesJson);
@@ -56,11 +56,6 @@ class SessionData {
     List<MovieModel> movies = await getWatchLists();
     movies.removeWhere((m) => m.title == movie.title);
     await storeWatchLists(movies);
-  }
-
-  static Future<bool> isBookmarked(MovieModel movie) async {
-    List<MovieModel> movies = await getBookmarks();
-    return movies.any((m) => m.title == movie.title);
   }
 
   static Future<void> storeSessiondata({

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:movie_search_application/common/helper/message/display_message.dart';
 import 'package:movie_search_application/controller/bloc/login_register_bloc/login_register_bloc.dart';
 import 'package:movie_search_application/controller/bloc/login_register_bloc/login_register_event.dart';
@@ -8,8 +9,6 @@ import 'package:movie_search_application/core/configs/theme/app_colors.dart';
 import 'package:movie_search_application/common/Widgets/custom_button.dart';
 
 import 'package:movie_search_application/view/Login_Register/Widgets/custom_textfield.dart';
-import 'package:movie_search_application/view/navbar/navbar_screen.dart';
-import 'package:movie_search_application/view/Login_Register/register_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -28,15 +27,11 @@ class LoginScreen extends StatelessWidget {
         listener: (context, state) {
           ///NAVIGATE TO HOMESCREEN
           if (state is LoginWithDataState) {
-            Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (context) => const NavbarScreen()),
-            );
+            context.replace('/navbar');
           }
           ///NAVIGATE TO REGISTERSCREEN
           else if (state is RegisterNavigateState) {
-            Navigator.of(context).push(
-              MaterialPageRoute(builder: (context) => const RegisterScreen()),
-            );
+            context.push('/register');
           } else if (state is LoginRegisterWithDataErrorState) {
             DisplayMessage.showMessage(message: state.error, context: context);
           } else if (state is LoginRegisterWithDataSuccessState) {
@@ -51,7 +46,7 @@ class LoginScreen extends StatelessWidget {
             children: [
               Stack(
                 children: [
-                  Container(
+                  SizedBox(
                     width: MediaQuery.of(context).size.width,
                     height: MediaQuery.of(context).size.height,
                     // color: const Color.fromARGB(160, 0, 0, 0),

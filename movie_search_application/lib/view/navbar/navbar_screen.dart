@@ -13,11 +13,7 @@ class NavbarScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create:
-          (_) =>
-              NavbarBloc()..add(
-                NavbarTapEvent(newIndex: selectedIndex),
-              ), // Set initial index
+      create: (_) => NavbarBloc()..add(NavbarTapEvent(newIndex: selectedIndex)),
       child: const NavbarView(),
     );
   }

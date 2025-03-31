@@ -3,14 +3,13 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:movie_search_application/common/helper/navigation/app_navigation.dart';
 import 'package:movie_search_application/controller/bloc/bookmark_bloc/bookmark_bloc.dart';
 import 'package:movie_search_application/controller/bloc/bookmark_bloc/bookmark_event.dart';
 import 'package:movie_search_application/controller/bloc/bookmark_bloc/bookmark_state.dart';
 import 'package:movie_search_application/core/configs/theme/app_colors.dart';
 import 'package:movie_search_application/core/configs/theme/app_text.dart';
-import 'package:movie_search_application/view/details/details_screen.dart';
 
 class BookmarksScreen extends StatefulWidget {
   const BookmarksScreen({super.key});
@@ -76,14 +75,12 @@ class _BookmarksScreenState extends State<BookmarksScreen> {
                         padding: const EdgeInsets.all(8.0),
                         child: GestureDetector(
                           onTap: () {
-                            AppNavigator.push(
-                              context,
-                              DetailsScreen(
-                                movieModel: state.bookmarkList[index],
-                              ),
+                            context.push(
+                              '/details',
+                              extra: state.bookmarkList[index],
                             );
                           },
-                          child: Container(
+                          child: SizedBox(
                             // color: Colors.amber,
                             width: MediaQuery.of(context).size.width * 0.8,
                             height: MediaQuery.of(context).size.height * 0.27,
@@ -187,7 +184,7 @@ class _BookmarksScreenState extends State<BookmarksScreen> {
                                             initialRating:
                                                 state
                                                     .bookmarkList[index]
-                                                    .rating!, // Set initial rating
+                                                    .rating!,
                                             // glowColor: ,
                                             itemSize: 25,
                                             direction: Axis.horizontal,
