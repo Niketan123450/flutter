@@ -50,7 +50,6 @@ GoRouter route = GoRouter(
       path: '/details',
       name: 'details',
       builder: (context, state) {
-        // Get MovieModel from extra
         final movie = state.extra as MovieModel;
         return DetailsScreen(movieModel: movie);
       },
